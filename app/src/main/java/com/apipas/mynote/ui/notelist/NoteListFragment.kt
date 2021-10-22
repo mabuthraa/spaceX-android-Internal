@@ -17,7 +17,7 @@ class NoteListFragment : BaseFragment<FragmentNoteListBinding, NoteListVM>(
         subscribe(NavToNoteDetailEvent::class, Observer<NavToNoteDetailEvent> {
             findNavController().navigate(
                 NoteListFragmentDirections.actionNoteListFragmentToNoteDetailFragment(
-                    it.idNote, it.editMode
+                    it.idNote
                 )
             )
         })
