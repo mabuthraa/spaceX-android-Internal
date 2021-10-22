@@ -18,8 +18,6 @@ abstract class BaseFragment<B : ViewDataBinding, VM : BaseViewModel>(
 ) :
     MvvmFragment<B, VM>(layoutId, viewModelClass) {
 
-    private val activityViewModel: MainVM by sharedViewModel(MainVM::class)
-
     private var rootLayout: View? = null
 
     open val requiresAuthentication = true

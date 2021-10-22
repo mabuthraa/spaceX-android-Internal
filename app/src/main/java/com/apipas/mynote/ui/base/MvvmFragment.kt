@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.apipas.mynote.BR
 import com.apipas.mynote.event.common.LiveEvent
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 import kotlin.reflect.KClass
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 abstract class MvvmFragment<B : ViewDataBinding, VM : BaseViewModel>(
@@ -20,7 +20,7 @@ abstract class MvvmFragment<B : ViewDataBinding, VM : BaseViewModel>(
 ) : Fragment() {
 
     protected lateinit var binding: B
-    open val viewModel: VM by viewModel(viewModelClass)
+    open val viewModel: VM by lazy { getViewModel(clazz = viewModelClass) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
