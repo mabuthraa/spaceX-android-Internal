@@ -11,7 +11,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.apipas.mynote.R
 import com.apipas.mynote.databinding.ActivityMainBinding
 import com.apipas.mynote.ui.base.BaseActivity
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity :
     BaseActivity<ActivityMainBinding, MainVM>(R.layout.activity_main, MainVM::class) {
@@ -22,14 +21,14 @@ class MainActivity :
     }
 
     private fun setupListeners() {
+
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         val appBarConfiguration = AppBarConfiguration(navController.graph)
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         // setting title according to fragment
-        navController.addOnDestinationChangedListener {     controller, destination, arguments ->
-            toolbar.title = "" // prevent duplication
-            toolbar_title.text = navController.currentDestination?.label
+        navController.addOnDestinationChangedListener { _, _, _ ->
+            binding.toolbar.title = navController.currentDestination?.label
         }
     }
 
