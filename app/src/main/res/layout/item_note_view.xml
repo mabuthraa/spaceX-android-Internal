@@ -12,7 +12,7 @@
 
         <variable
             name="vm"
-            type="com.epam.spacex.ui.notelist.NoteListVM" />
+            type="com.epam.spacex.presentation.notelist.NoteListVM" />
 
     </data>
 

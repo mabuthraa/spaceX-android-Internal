@@ -1,9 +1,9 @@
 package com.epam.spacex.di
 
-import com.epam.spacex.ui.home.HomeVM
-import com.epam.spacex.ui.main.MainVM
-import com.epam.spacex.ui.notedetail.NoteDetailVm
-import com.epam.spacex.ui.notelist.NoteListVM
+import com.epam.spacex.presentation.home.HomeVM
+import com.epam.spacex.presentation.main.MainVM
+import com.epam.spacex.presentation.notedetail.NoteDetailVm
+import com.epam.spacex.presentation.notelist.NoteListVM
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

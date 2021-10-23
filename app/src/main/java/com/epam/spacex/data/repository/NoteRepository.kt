@@ -6,7 +6,7 @@ import com.epam.spacex.data.remote.client.api.safeApiCall
 import com.epam.spacex.data.remote.dto.note.NoteRequestDto
 import com.epam.spacex.data.remote.service.NoteServiceApi
 import com.epam.spacex.data.repository.mapper.NoteRepositoryMapper
-import com.epam.spacex.exception.RepositoryException
+import com.epam.spacex.data.exception.RepositoryException
 
 interface NoteRepository {
     suspend fun getNotes(): ApiResult<List<Note>>

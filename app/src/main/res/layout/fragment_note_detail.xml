@@ -8,7 +8,7 @@
 
         <variable
             name="vm"
-            type="com.epam.spacex.ui.notedetail.NoteDetailVm" />
+            type="com.epam.spacex.presentation.notedetail.NoteDetailVm" />
     </data>
 
     <ScrollView
@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        tools:context=".ui.notedetail.NoteDetailFragment">
+        tools:context=".presentation.notedetail.NoteDetailFragment">
 
         <FrameLayout
             android:layout_width="match_parent"

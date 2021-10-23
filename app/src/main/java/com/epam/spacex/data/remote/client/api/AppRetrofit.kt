@@ -1,6 +1,6 @@
 package com.epam.spacex.data.remote.client.api
 
-import com.epam.spacex.Constants
+import com.epam.spacex.app.Constants
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient

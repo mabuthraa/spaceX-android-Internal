@@ -1,10 +1,10 @@
 package com.epam.spacex.data.remote.client.api
 
 import androidx.annotation.StringRes
-import com.epam.spacex.App
+import com.epam.spacex.app.SpaceXApp
 import com.epam.spacex.R
-import com.epam.spacex.exception.RepositoryErrorType
-import com.epam.spacex.exception.RepositoryException
+import com.epam.spacex.data.exception.RepositoryErrorType
+import com.epam.spacex.data.exception.RepositoryException
 import retrofit2.HttpException
 import retrofit2.Response
 import java.io.IOException
@@ -43,6 +43,6 @@ private fun getGeneralApiException(@StringRes msg: Int): RepositoryException {
     return RepositoryException(
         RepositoryErrorType.TYPE_API,
         // Message = "Error Http Code!"
-        message = App.instance.getString(msg)
+        message = SpaceXApp.instance.getString(msg)
     )
 }

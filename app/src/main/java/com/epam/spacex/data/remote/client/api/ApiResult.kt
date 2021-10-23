@@ -1,6 +1,6 @@
 package com.epam.spacex.data.remote.client.api
 
-import com.epam.spacex.exception.RepositoryException
+import com.epam.spacex.data.exception.RepositoryException
 import retrofit2.Response
 
 sealed class ApiResult<out T : Any> {

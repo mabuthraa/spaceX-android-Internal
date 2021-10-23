@@ -9,13 +9,13 @@
 
         <variable
             name="vm"
-            type="com.epam.spacex.ui.home.HomeVM" />
+            type="com.epam.spacex.presentation.home.HomeVM" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.notelist.NoteListFragment">
+        tools:context=".presentation.notelist.NoteListFragment">
 
         <TextView
             android:id="@+id/textview_first"
