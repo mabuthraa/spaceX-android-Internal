@@ -8,11 +8,11 @@
 
         <variable
             name="item"
-            type="com.apipas.mynote.data.model.Note" />
+            type="com.epam.spacex.data.model.Note" />
 
         <variable
             name="vm"
-            type="com.apipas.mynote.ui.notelist.NoteListVM" />
+            type="com.epam.spacex.ui.notelist.NoteListVM" />
 
     </data>
 

@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.apipas.mynote.ui.main.MainVM" />
+            type="com.epam.spacex.ui.main.MainVM" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

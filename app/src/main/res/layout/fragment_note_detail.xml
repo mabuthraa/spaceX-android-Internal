@@ -8,7 +8,7 @@
 
         <variable
             name="vm"
-            type="com.apipas.mynote.ui.notedetail.NoteDetailVm" />
+            type="com.epam.spacex.ui.notedetail.NoteDetailVm" />
     </data>
 
     <ScrollView

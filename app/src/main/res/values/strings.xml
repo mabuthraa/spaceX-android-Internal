@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">MyNote</string>
+    <string name="app_name">SpaceX</string>
     <string name="action_discard">Discard</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="note_list_fragment_label">My notes</string>
+    <string name="note_list_fragment_label">SpaceX</string>
     <string name="note_detail_fragment_label">Note detail</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
