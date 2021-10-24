@@ -6,6 +6,4 @@ sealed class HomeCompanyInfoVS {
     class AddCompanyInfo(val homeCompanyModel: HomeCompanyModel) : HomeCompanyInfoVS()
     class Error(val message: String?) : HomeCompanyInfoVS()
     class ShowLoader(val showLoader: Boolean) : HomeCompanyInfoVS()
-
-    fun toData(): String? = (this as? AddCompanyInfo)?.homeCompanyModel?.companyName
 }

@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:background="@color/gray_half_transparent"
+        android:background="@color/grayHalfTransparentColor"
         android:elevation="2dp"
         android:gravity="center"
         android:orientation="vertical">

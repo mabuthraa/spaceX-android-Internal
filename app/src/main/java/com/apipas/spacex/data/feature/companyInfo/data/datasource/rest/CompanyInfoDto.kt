@@ -1,5 +1,7 @@
 package com.apipas.spacex.data.feature.companyInfo.data.datasource.rest
 
+import com.squareup.moshi.Json
+
 data class CompanyInfoDto(
     val summary: String? = null,
     val coo: String? = null,
@@ -7,6 +9,7 @@ data class CompanyInfoDto(
     val founded: Int? = null,
     val vehicles: Int? = null,
     val ceo: String? = null,
+    @field:Json(name = "launch_sites")
     val launchSites: Int? = null,
     val headquarters: Headquarters? = null,
     val valuation: Long? = null,

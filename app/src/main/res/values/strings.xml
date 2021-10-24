@@ -14,4 +14,6 @@
     <string name="global_server_error">Server  Error</string>
     <string name="note_list_last_update">"Last Update: %1$s"</string>
     <string name="action_delete">Delete</string>
+    <string name="home_company"><![CDATA[<b>%1$s</b> was founded by <b>%2$s</b> in <b>%3$d</b>. It has now <b>%4$d</b> employees, <b>%5$d</b> launch sites, and is valued at USD <b>%6$s</b>]]></string>
+    <string name="general_embedded_error">Error! cannot load data</string>
 </resources>

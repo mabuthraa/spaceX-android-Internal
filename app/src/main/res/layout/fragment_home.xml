@@ -7,78 +7,61 @@
 
         <import type="com.apipas.spacex.R" />
 
+        <import type="com.apipas.spacex.presentation.base.viewmodel.ViewState" />
+
         <variable
             name="vm"
-            type="com.apipas.spacex.presentation.home.viewmodel.HomeVM" />
+            type="com.apipas.spacex.presentation.home.viewmodel.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textview_first"
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:id="@+id/home_company_info_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_padding_size_8"
-            android:text="test"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_padding_size_8"
+                android:text='@{vm.companyInfoVS.toData() != null ? vm.companyInfoVS.toData().getCompanyInfoParagraph(context) : null}'
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                app:showOnSuccess="@{vm.companyInfoVS}"
+                tools:text="@string/home_company" />
 
-        <TextView
-            android:id="@+id/textview_second"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_padding_size_8"
-            android:text="test2"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            app:layout_constraintTop_toBottomOf="@id/textview_first"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_padding_size_8"
+                android:text="@string/general_embedded_error"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/errorColor"
+                app:showOnError="@{vm.companyInfoVS}"
+                tools:visibility="gone" />
+
+            <include
+                layout="@layout/view_loading_transparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:showOnLoading="@{vm.companyInfoVS}"
+                tools:visibility="gone" />
+        </FrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/note_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:items="@{vm.notes}"
+            app:layoutId="@{R.layout.item_note_view}"
             app:layout_constraintEnd_toEndOf="parent"
-
             app:layout_constraintStart_toStartOf="parent"
-             />
-
-        <!--        <androidx.recyclerview.widget.RecyclerView-->
-        <!--            android:id="@+id/note_list"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="0dp"-->
-        <!--            app:items="@{vm.notes}"-->
-        <!--            app:layoutId="@{R.layout.item_note_view}"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/textview_first"-->
-        <!--            app:viewModel="@{vm}" />-->
-
-
-        <!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-        <!--            android:id="@+id/fab"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_margin="@dimen/margin_padding_size_16"-->
-        <!--            android:elevation="-1dp"-->
-        <!--            android:onClick='@{()-> vm.goToNoteDetail((String)null, true)}'-->
-        <!--            android:tint="@android:color/white"-->
-        <!--            android:translationZ="-1dp"-->
-        <!--            app:layout_anchor="@id/note_list"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:srcCompat="@android:drawable/ic_input_add"-->
-        <!--            app:visibleOrGone="@{!vm.loading}" />-->
-
-        <!--        <include-->
-        <!--            android:id="@+id/layoutInProgress"-->
-        <!--            layout="@layout/view_loading_transparent"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toTopOf="parent"-->
-        <!--            app:visibleOrGone="@{vm.loading}"-->
-        <!--            tools:visibility="gone" />-->
-
+            app:layout_constraintTop_toBottomOf="@id/home_company_info_container"
+            app:viewModel="@{vm}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

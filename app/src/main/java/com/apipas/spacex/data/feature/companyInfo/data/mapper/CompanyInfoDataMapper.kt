@@ -9,7 +9,9 @@ class CompanyInfoDataMapper : Mapper<CompanyInfoDto, CompanyInfoEntity> {
         CompanyInfoEntity(
             companyName = origin.name,
             founderName = origin.founder,
+            foundedYear = origin.founded,
             employees = origin.employees,
-            launchSites = origin.launchSites
+            launchSites = origin.launchSites,
+            valuation = origin.valuation
         )
 }

@@ -9,7 +9,9 @@ class HomeCompanyInfoVMMapper : Mapper<CompanyInfoEntity, HomeCompanyModel> {
         HomeCompanyModel(
             companyName = origin.companyName,
             founderName = origin.founderName,
+            foundedYear = origin.foundedYear,
             employees = origin.employees,
-            launchSites = origin.launchSites
+            launchSites = origin.launchSites,
+            valuation = origin.valuation
         )
 }
