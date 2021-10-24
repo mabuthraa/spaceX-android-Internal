@@ -8,7 +8,7 @@
 
         <variable
             name="vm"
-            type="com.epam.spacex.presentation.notedetail.NoteDetailVm" />
+            type="com.apipas.spacex.presentation.notedetail.NoteDetailVm" />
     </data>
 
     <ScrollView

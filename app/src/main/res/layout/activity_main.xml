@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.epam.spacex.presentation.main.MainVM" />
+            type="com.apipas.spacex.presentation.main.MainVM" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

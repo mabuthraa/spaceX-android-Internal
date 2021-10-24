@@ -5,11 +5,11 @@
 
     <data>
 
-        <import type="com.epam.spacex.R" />
+        <import type="com.apipas.spacex.R" />
 
         <variable
             name="vm"
-            type="com.epam.spacex.presentation.notelist.NoteListVM" />
+            type="com.apipas.spacex.presentation.notelist.NoteListVM" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

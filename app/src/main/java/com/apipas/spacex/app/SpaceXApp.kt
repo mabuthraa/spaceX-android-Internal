@@ -1,0 +1,30 @@
+package com.apipas.spacex.app
+
+import android.app.Application
+import com.apipas.spacex.di.*
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
+
+class SpaceXApp : Application() {
+    //todo to be removed and use DI to retrieve AppContext
+    companion object {
+        lateinit var instance: SpaceXApp private set
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        instance = this
+        startKoin {
+            androidContext(this@SpaceXApp)
+            modules(
+                listOf(
+                    viewModelModule,
+                    remoteDataModule,
+                    repositoryModule,
+                    dataStoreMode,
+                    interactorModule
+                )
+            )
+        }
+    }
+}

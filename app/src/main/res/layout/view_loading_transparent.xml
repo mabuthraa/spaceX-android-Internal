@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="com.epam.spacex.presentation.base.BaseViewModel" />
+            type="com.apipas.spacex.presentation.base.BaseViewModel" />
     </data>
 
     <LinearLayout
