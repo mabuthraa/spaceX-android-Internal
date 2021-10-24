@@ -2,7 +2,7 @@ package com.apipas.spacex.data.feature.companyInfo.domain.interactor
 
 import kotlinx.coroutines.flow.Flow
 import com.apipas.spacex.data.feature.companyInfo.domain.model.CompanyInfoEntity
-import com.apipas.spacex.data.feature.companyInfo.domain.repository.CompanyInfoRepository
+import com.apipas.spacex.data.feature.companyInfo.data.repository.CompanyInfoRepository
 import com.carlosgub.coroutines.core.interactor.Interactor
 
 class GetCompanyInfoInteractor(private val repository: CompanyInfoRepository) :

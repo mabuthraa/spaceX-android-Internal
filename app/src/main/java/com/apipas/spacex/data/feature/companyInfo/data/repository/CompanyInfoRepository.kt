@@ -1,4 +1,4 @@
-package com.apipas.spacex.data.feature.companyInfo.domain.repository
+package com.apipas.spacex.data.feature.companyInfo.data.repository
 
 import com.apipas.spacex.data.feature.companyInfo.data.datasource.rest.CompanyInfoDataStore
 import com.apipas.spacex.data.feature.companyInfo.data.mapper.CompanyInfoDataMapper
