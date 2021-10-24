@@ -1,8 +1,6 @@
 package com.apipas.spacex.presentation.home.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.apipas.spacex.data.feature.companyInfo.domain.interactor.GetCompanyInfoInteractor
 import com.apipas.spacex.presentation.base.BaseViewModel
 import com.apipas.spacex.presentation.home.model.mapper.HomeCompanyInfoVMMapper
@@ -20,6 +18,7 @@ class HomeVM(private val getCompanyInfoInteractor: GetCompanyInfoInteractor) : B
 
     private val companyVMMapper by lazy { HomeCompanyInfoVMMapper() }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun getCompanyInfo() {
         viewModelScope.launch {
             _companyInfoVS.value = HomeCompanyInfoVS.ShowLoader(true)
