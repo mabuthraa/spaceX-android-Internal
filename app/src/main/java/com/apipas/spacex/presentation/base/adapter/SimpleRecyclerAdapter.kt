@@ -9,7 +9,7 @@ import androidx.databinding.ViewDataBinding
 
 import androidx.recyclerview.widget.RecyclerView
 import com.apipas.spacex.BR
-import com.apipas.spacex.presentation.base.BaseViewModel
+import com.apipas.spacex.presentation.base.viewmodel.BaseViewModel
 
 class SimpleRecyclerAdapter<T>(
     items: ObservableList<T>,

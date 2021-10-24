@@ -9,6 +9,11 @@ class LaunchDataMapper : Mapper<LaunchDto, LaunchEntity> {
         LaunchEntity(
             id = origin.id!!, //todo add special exception for mapper
             staticFireDateUtc = origin.staticFireDateUtc,
+            dateUtc = origin.dateUtc,
+            success = origin.success,
+            name = origin.name,
+            upcoming = origin.upcoming,
+            rocket = origin.rocket,
             failures = origin.failures?.map {
                 LaunchEntity.FailuresItem(
                     altitude = it.altitude,
@@ -16,11 +21,6 @@ class LaunchDataMapper : Mapper<LaunchDto, LaunchEntity> {
                     time = it.time
                 )
             } ?: emptyList(),
-            dateUtc = origin.dateUtc,
-            success = origin.success,
-            name = origin.name,
-            upcoming = origin.upcoming,
-            rocket = origin.rocket,
             links = origin.links?.let { linksOrigin ->
                 LaunchEntity.Links(
                     patch = linksOrigin.patch?.let { LaunchEntity.Patch(it.small, it.large) },

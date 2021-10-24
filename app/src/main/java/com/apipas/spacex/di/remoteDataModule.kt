@@ -3,6 +3,7 @@ package com.apipas.spacex.di
 import android.content.Context
 import com.apipas.spacex.data.feature.companyInfo.data.datasource.rest.CompanyInfoApiService
 import com.apipas.spacex.data.feature.companyInfo.data.datasource.rest.CompanyInfoDataStore
+import com.apipas.spacex.data.feature.launch.data.datasource.rest.LaunchApiService
 import com.apipas.spacex.data.remote.AppOkHttpClient
 import com.apipas.spacex.data.remote.client.api.AppRetrofit
 import com.apipas.spacex.data.remote.service.NoteServiceApi
@@ -18,6 +19,7 @@ val remoteDataModule = module {
     //api
     factory { provideApi<NoteServiceApi>(get(), NoteServiceApi::class) }
     factory { provideApi<CompanyInfoApiService>(get(), CompanyInfoApiService::class) }
+    factory { provideApi<LaunchApiService>(get(), LaunchApiService::class) }
 }
 
 

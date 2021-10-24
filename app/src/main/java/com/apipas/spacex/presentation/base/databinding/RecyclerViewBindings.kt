@@ -4,7 +4,7 @@ import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableArrayList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.apipas.spacex.presentation.base.BaseViewModel
+import com.apipas.spacex.presentation.base.viewmodel.BaseViewModel
 import com.apipas.spacex.presentation.base.adapter.SimpleRecyclerAdapter
 
 

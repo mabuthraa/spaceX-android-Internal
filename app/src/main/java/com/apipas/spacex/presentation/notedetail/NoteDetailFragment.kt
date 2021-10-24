@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.apipas.spacex.R
 import com.apipas.spacex.databinding.FragmentNoteDetailBinding
-import com.apipas.spacex.presentation.base.BaseFragment
+import com.apipas.spacex.presentation.base.fragment.BaseFragment
 
 
 class NoteDetailFragment : BaseFragment<FragmentNoteDetailBinding, NoteDetailVm>(

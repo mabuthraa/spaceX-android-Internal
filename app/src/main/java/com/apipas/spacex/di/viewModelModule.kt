@@ -10,7 +10,7 @@ import org.koin.dsl.module
 
 val viewModelModule = module {
     viewModel { NoteListVM(get()) }
-    viewModel { HomeViewModel(get()) }
+    viewModel { HomeViewModel(get(), get()) }
     viewModel { NoteDetailVm(get()) }
     viewModel { MainVM() }
 }

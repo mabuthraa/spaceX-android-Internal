@@ -6,7 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.apipas.spacex.R
 import com.apipas.spacex.databinding.FragmentNoteListBinding
-import com.apipas.spacex.presentation.base.BaseFragment
+import com.apipas.spacex.presentation.base.fragment.BaseFragment
 
 class NoteListFragment : BaseFragment<FragmentNoteListBinding, NoteListVM>(
     R.layout.fragment_note_list,

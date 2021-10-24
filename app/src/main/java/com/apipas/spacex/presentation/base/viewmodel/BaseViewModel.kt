@@ -1,4 +1,4 @@
-package com.apipas.spacex.presentation.base
+package com.apipas.spacex.presentation.base.viewmodel
 
 
 import androidx.lifecycle.*

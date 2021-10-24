@@ -1,8 +1,11 @@
 package com.apipas.spacex.presentation.base.databinding
 
 import android.view.View
+import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import com.apipas.spacex.R
 import com.apipas.spacex.presentation.base.viewmodel.ViewState
+import com.bumptech.glide.Glide
 
 
 @BindingAdapter("visibleOrGone")
@@ -37,4 +40,14 @@ fun setShowOnSuccess(view: View, viewState: ViewState<*>) {
         is ViewState.Success -> View.VISIBLE
         else -> View.INVISIBLE
     }
+}
+
+@BindingAdapter("fetchImage")
+fun setImage(view: ImageView, urlImage: String?) {
+    Glide
+        .with(view.context)
+        .load(urlImage)
+        .centerInside()
+        .placeholder(R.drawable.ic_patch_placeholder)
+        .into(view);
 }

@@ -4,16 +4,13 @@
 
     <data>
 
-        <variable
-            name="vm"
-            type="com.apipas.spacex.presentation.base.BaseViewModel" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:background="@color/grayHalfTransparentColor"
+        android:background="@color/in_progress_color"
         android:elevation="2dp"
         android:gravity="center"
         android:orientation="vertical">

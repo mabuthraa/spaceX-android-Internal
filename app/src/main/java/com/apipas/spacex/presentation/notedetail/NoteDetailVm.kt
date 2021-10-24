@@ -4,7 +4,7 @@ import com.apipas.spacex.data.NonNullMutableLiveData
 import com.apipas.spacex.data.model.Note
 import com.apipas.spacex.data.remote.client.api.ApiResult
 import com.apipas.spacex.data.repository.NoteRepository
-import com.apipas.spacex.presentation.base.BaseViewModel
+import com.apipas.spacex.presentation.base.viewmodel.BaseViewModel
 
 class NoteDetailVm(private val noteRepository: NoteRepository) : BaseViewModel() {
 

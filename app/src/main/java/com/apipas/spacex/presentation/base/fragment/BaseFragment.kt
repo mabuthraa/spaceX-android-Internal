@@ -1,4 +1,4 @@
-package com.apipas.spacex.presentation.base
+package com.apipas.spacex.presentation.base.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
+import com.apipas.spacex.presentation.base.viewmodel.BaseViewModel
 import com.apipas.spacex.presentation.base.viewmodel.MvvmFragment
 import com.google.android.material.snackbar.Snackbar
 import kotlin.reflect.KClass

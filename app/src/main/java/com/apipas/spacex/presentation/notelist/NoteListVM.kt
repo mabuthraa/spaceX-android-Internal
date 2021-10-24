@@ -9,7 +9,7 @@ import com.apipas.spacex.R
 import com.apipas.spacex.data.model.Note
 import com.apipas.spacex.data.remote.client.api.ApiResult
 import com.apipas.spacex.data.repository.NoteRepository
-import com.apipas.spacex.presentation.base.BaseViewModel
+import com.apipas.spacex.presentation.base.viewmodel.BaseViewModel
 import com.apipas.spacex.util.DateTimeFormat
 import java.util.*
 
