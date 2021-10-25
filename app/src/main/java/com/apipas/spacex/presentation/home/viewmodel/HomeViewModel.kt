@@ -4,6 +4,7 @@ import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.*
 import com.apipas.spacex.data.feature.companyInfo.domain.interactor.GetCompanyInfoInteractor
 import com.apipas.spacex.data.feature.launch.domain.interactor.GetLaunchesInteractor
+import com.apipas.spacex.data.feature.launch.domain.model.LaunchQueryEntity
 import com.apipas.spacex.presentation.base.viewmodel.BaseViewModel
 import com.apipas.spacex.presentation.base.viewmodel.ViewState
 import com.apipas.spacex.presentation.home.model.HomeCompanyModel
@@ -34,10 +35,14 @@ class HomeViewModel(
     private val companyVMMapper by lazy { HomeCompanyInfoVMMapper() }
     private val launchVMMapper by lazy { HomeLaunchVMMapper() }
 
+    //launchQuery
+    private var launchQueryEntity = LaunchQueryEntity()
+
+
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     private fun loadData() {
         getCompanyInfo()
-        getInitLaunchList()
+        loadLaunchList(true)
     }
 
     private fun getCompanyInfo() {
@@ -58,17 +63,25 @@ class HomeViewModel(
         }
     }
 
-    private fun getInitLaunchList() {
-        launchList.clear()
+    private fun loadLaunchList(forceUpdate: Boolean) {
+        if (forceUpdate) clearLaunches()
+        if (!launchQueryEntity.hasNextPage) {
+            // no pages to be loaded
+            return
+        }
         viewModelScope.launch {
             _launchListVS.value = ViewState.Loading
             try {
                 io {
-                    getLaunchesInteractor.execute(Interactor.None)
+                    getLaunchesInteractor.execute(GetLaunchesInteractor.Params(launchQueryEntity.copy()))
                         .collect {
                             ui {
                                 val item = launchVMMapper.map(it.docs)
                                 launchList.addAll(item)
+                                launchQueryEntity = launchQueryEntity.copy(
+                                    nextPage = it.nextPage,
+                                    hasNextPage = it.hasNextPage
+                                )
                                 _launchListVS.value = ViewState.Success(item)
                             }
                         }
@@ -77,5 +90,15 @@ class HomeViewModel(
                 ui { _launchListVS.value = ViewState.Error(e) }
             }
         }
+    }
+
+
+    fun loadNextLaunches() {
+        loadLaunchList(false)
+    }
+
+    fun clearLaunches() {
+        launchList.clear()
+        launchQueryEntity = LaunchQueryEntity()
     }
 }

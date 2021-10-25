@@ -18,9 +18,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/home_company_debug"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->vm.loadNextLaunches()}"
+                    android:text="Next" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->vm.clearLaunches()}"
+                    android:text="clear" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/home_company_title"
@@ -28,8 +51,11 @@
                 android:text='@string/home_company_title'
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/home_company_debug"
 
+                />
+
+            <!--            app:layout_constraintTop_toTopOf="parent"-->
 
             <FrameLayout
                 android:id="@+id/home_company_info_container"
@@ -45,7 +71,6 @@
                     android:layout_marginStart="@dimen/margin_padding_size_16"
                     android:layout_marginEnd="@dimen/margin_padding_size_16"
                     android:layout_marginBottom="@dimen/margin_padding_size_8"
-
                     android:text='@{vm.companyInfoVS.toData() != null ? vm.companyInfoVS.toData().getCompanyInfoParagraph(context) : null}'
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     app:showOnSuccess="@{vm.companyInfoVS}"
@@ -72,7 +97,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/home_company_info_container" />
 
-            <FrameLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -91,15 +116,16 @@
 
                 <include
                     layout="@layout/view_simple_error"
+                    android:layout_below="@id/launch_list"
                     app:showOnError="@{vm.launchListVSModel}" />
 
                 <include
                     layout="@layout/view_loading_transparent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:showOnLoading="@{vm.launchListVSModel}"
-                    tools:visibility="gone" />
-            </FrameLayout>
+                    android:layout_below="@id/launch_list"
+                    app:showOnLoading="@{vm.launchListVSModel}" />
+            </RelativeLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

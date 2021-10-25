@@ -7,11 +7,12 @@ import com.apipas.spacex.data.feature.launch.data.datasource.rest.LaunchDataStor
 import com.apipas.spacex.data.feature.launch.data.datasource.rest.LaunchResponseDto
 import com.apipas.spacex.data.feature.launch.data.mapper.LaunchDataMapper
 import com.apipas.spacex.data.feature.launch.domain.model.LaunchEntity
+import com.apipas.spacex.data.feature.launch.domain.model.LaunchQueryEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 interface LaunchRepository {
-    fun getLaunches(): Flow<PagerEntity<LaunchEntity>>
+    fun getLaunches(launchQueryEntity: LaunchQueryEntity): Flow<PagerEntity<LaunchEntity>>
 }
 
 class LaunchRepositoryImpl(
@@ -22,9 +23,8 @@ class LaunchRepositoryImpl(
 
     private val pageDataMapper by lazy { PageDataMapper<LaunchResponseDto, LaunchEntity>() }
 
-    override fun getLaunches(): Flow<PagerEntity<LaunchEntity>> =
-        dataStore.getLaunches().map {
-            val data= pageDataMapper.map(it).copy(docs = dataMapper.map(it.docs ?: emptyList()))
-            data
+    override fun getLaunches(launchQueryEntity: LaunchQueryEntity): Flow<PagerEntity<LaunchEntity>> =
+        dataStore.getLaunches(launchQueryEntity).map {
+            pageDataMapper.map(it).copy(docs = dataMapper.map(it.docs ?: emptyList()))
         }
 }

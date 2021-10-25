@@ -9,8 +9,10 @@ import com.apipas.spacex.data.feature.launch.domain.model.LaunchEntity
 class PageDataMapper<T : Any, E : Any> : Mapper<PagerResponseDto<T>, PagerEntity<E>> {
     override fun map(origin: PagerResponseDto<T>) =
         PagerEntity<E>(
-            hasNextPage = origin.hasNextPage,
+            hasNextPage = origin.hasNextPage ?: false,
             limit = origin.limit,
-            page = origin.page
+            page = origin.page,
+            nextPage = origin.nextPage,
+            totalPages = origin.totalPages
         )
 }

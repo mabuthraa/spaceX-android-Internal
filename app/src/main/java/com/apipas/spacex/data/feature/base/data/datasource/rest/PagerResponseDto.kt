@@ -17,7 +17,7 @@ data class PagerResponseDto<T : Any>(
     val pagingCounter: Int? = null,
 
     @Json(name = "nextPage")
-    val nextPage: Any? = null,
+    val nextPage: Int? = null,
 
     @Json(name = "limit")
     val limit: Int? = null,
