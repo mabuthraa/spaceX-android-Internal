@@ -8,14 +8,13 @@
 
         <variable
             name="item"
-            type="com.epam.spacex.data.model.Note" />
+            type="com.apipas.spacex.data.model.Note" />
 
         <variable
             name="vm"
-            type="com.epam.spacex.ui.notelist.NoteListVM" />
+            type="com.apipas.spacex.presentation.notelist.NoteListVM" />
 
     </data>
-
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvEmployee"

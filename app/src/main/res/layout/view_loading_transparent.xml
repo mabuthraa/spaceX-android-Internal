@@ -4,16 +4,12 @@
 
     <data>
 
-        <variable
-            name="vm"
-            type="com.epam.spacex.ui.base.BaseViewModel" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:background="@color/gray_half_transparent"
         android:elevation="2dp"
         android:gravity="center"
         android:orientation="vertical">

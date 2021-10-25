@@ -14,4 +14,17 @@
     <string name="global_server_error">Server  Error</string>
     <string name="note_list_last_update">"Last Update: %1$s"</string>
     <string name="action_delete">Delete</string>
+    <string name="home_company"><![CDATA[<b>%1$s</b> was founded by <b>%2$s</b> in <b>%3$d</b>. It has now <b>%4$d</b> employees, <b>%5$d</b> launch sites, and is valued at USD <b>%6$s</b>]]></string>
+    <string name="general_embedded_error">Oops! It\'s an error ⚠️ Data cannot be loaded</string>
+    <string name="home_launch_item_patch_description">Patch</string>
+    <string name="home_launch_item_mission">Mission:</string>
+    <string name="home_launch_item_date_time">Date/time:</string>
+    <string name="home_launch_item_rocket">Rocket:</string>
+    <string name="home_launch_item_days_from">Days from now:</string>
+    <string name="home_launch_item_days_since">Days since now:</string>
+    <string name="home_company_title">COMPANY</string>
+    <string name="home_launches_title">LAUNCHES</string>
+    <string name="home_launch_item_today">Today</string>
+    <string name="home_launch_item_since">+%1$d days</string>
+    <string name="home_launch_item_from">%1$d days</string>
 </resources>

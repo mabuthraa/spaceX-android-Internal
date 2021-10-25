@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.epam.spacex.ui.home.HomeFragment"
+        android:name="com.apipas.spacex.presentation.home.HomeFragment"
         tools:layout="@layout/fragment_home"
         android:label="HomeFragment" />
 
     <fragment
         android:id="@+id/NoteListFragment"
-        android:name="com.epam.spacex.ui.notelist.NoteListFragment"
+        android:name="com.apipas.spacex.presentation.notelist.NoteListFragment"
         android:label="@string/note_list_fragment_label"
         tools:layout="@layout/fragment_note_list">
 
@@ -23,7 +23,7 @@
     </fragment>
     <fragment
         android:id="@+id/NoteDetailFragment"
-        android:name="com.epam.spacex.ui.notedetail.NoteDetailFragment"
+        android:name="com.apipas.spacex.presentation.notedetail.NoteDetailFragment"
         android:label="@string/note_detail_fragment_label"
         tools:layout="@layout/fragment_note_detail">
 

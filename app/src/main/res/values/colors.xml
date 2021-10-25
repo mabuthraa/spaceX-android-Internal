@@ -3,5 +3,16 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#FF5722</color>
-    <color name="gray_half_transparent">#66666666</color>
+
+    <color name="red">#ffE4162F</color>
+    <color name="gray_dark">#171B1E</color>
+    <color name="gray_light">#A6A6A6</color>
+
+
+    <!--usages-->
+    <color name="error_text_color">@color/red</color>
+    <color name="text_normal">@color/gray_dark</color>
+    <color name="text_normal_light">@color/gray_light</color>
+
+
 </resources>
