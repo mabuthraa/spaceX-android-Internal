@@ -1,10 +1,12 @@
 package com.apipas.spacex.data.feature.launch.domain.model
 
+import java.util.*
+
 data class LaunchEntity(
     val id: String,
-    val staticFireDateUtc: String? = null,
+    val staticFireDateUtc: Date? = null,
     val failures: List<FailuresItem> = emptyList(),
-    val dateUtc: String? = null,
+    val dateUtc: Date? = null,
     val success: Boolean? = null,
     val name: String? = null,
     val upcoming: Boolean? = null,

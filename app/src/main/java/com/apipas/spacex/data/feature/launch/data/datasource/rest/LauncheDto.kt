@@ -1,6 +1,7 @@
 package com.apipas.spacex.data.feature.launch.data.datasource.rest
 
 import com.squareup.moshi.Json
+import java.util.*
 
 data class LaunchDto(
 
@@ -44,7 +45,7 @@ data class LaunchDto(
     val capsules: List<String>? = null,
 
     @Json(name = "static_fire_date_utc")
-    val staticFireDateUtc: String? = null,
+    val staticFireDateUtc: Date? = null,
 
     @Json(name = "failures")
     val failures: List<FailuresItem>? = null,
@@ -65,7 +66,7 @@ data class LaunchDto(
     val ships: List<String>? = null,
 
     @Json(name = "date_utc")
-    val dateUtc: String? = null,
+    val dateUtc: Date? = null,
 
     @Json(name = "static_fire_date_unix")
     val staticFireDateUnix: Int? = null,

@@ -7,7 +7,7 @@ import com.apipas.spacex.data.feature.launch.domain.interactor.GetLaunchesIntera
 import com.apipas.spacex.presentation.base.viewmodel.BaseViewModel
 import com.apipas.spacex.presentation.base.viewmodel.ViewState
 import com.apipas.spacex.presentation.home.model.HomeCompanyModel
-import com.apipas.spacex.presentation.home.model.HomeLaunchItem
+import com.apipas.spacex.presentation.home.model.HomeLaunchItemModel
 import com.apipas.spacex.presentation.home.model.mapper.HomeCompanyInfoVMMapper
 import com.apipas.spacex.presentation.home.model.mapper.HomeLaunchVMMapper
 import com.apipas.spacex.util.io
@@ -26,9 +26,9 @@ class HomeViewModel(
     val companyInfoVS: LiveData<ViewState<HomeCompanyModel>> get() = _companyInfoVS
 
     //companyInfo VS
-    private val _launchListVS = MutableLiveData<ViewState<HomeLaunchItem>>()
-    val launchListVS: LiveData<ViewState<HomeLaunchItem>> get() = _launchListVS
-    val launchList = ObservableArrayList<HomeLaunchItem>()
+    private val _launchListVS = MutableLiveData<ViewState<HomeLaunchItemModel>>()
+    val launchListVSModel: LiveData<ViewState<HomeLaunchItemModel>> get() = _launchListVS
+    val launchList = ObservableArrayList<HomeLaunchItemModel>()
 
     //mappers to models
     private val companyVMMapper by lazy { HomeCompanyInfoVMMapper() }

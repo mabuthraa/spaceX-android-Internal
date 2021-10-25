@@ -91,13 +91,13 @@
 
                 <include
                     layout="@layout/view_simple_error"
-                    app:showOnError="@{vm.launchListVS}" />
+                    app:showOnError="@{vm.launchListVSModel}" />
 
                 <include
                     layout="@layout/view_loading_transparent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:showOnLoading="@{vm.launchListVS}"
+                    app:showOnLoading="@{vm.launchListVSModel}"
                     tools:visibility="gone" />
             </FrameLayout>
 
