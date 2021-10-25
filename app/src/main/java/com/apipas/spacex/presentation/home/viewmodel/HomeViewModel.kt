@@ -26,6 +26,10 @@ class HomeViewModel(
     private val _companyInfoVS = MutableLiveData<ViewState<HomeCompanyModel>>()
     val companyInfoVS: LiveData<ViewState<HomeCompanyModel>> get() = _companyInfoVS
 
+    //launchesCounter
+    private val _launchesCounter = MutableLiveData<Int>().apply { value = 0 }
+    val launchesCounter: LiveData<Int> get() = _launchesCounter
+
     //companyInfo VS
     private val _launchListVS = MutableLiveData<ViewState<List<HomeLaunchItemModel>>>()
     val launchListVSModel: LiveData<ViewState<List<HomeLaunchItemModel>>> get() = _launchListVS
@@ -74,13 +78,18 @@ class HomeViewModel(
             try {
                 io {
                     getLaunchesInteractor.execute(GetLaunchesInteractor.Params(launchQueryEntity.copy()))
-                        .collect {
+                        .collect { docs ->
                             ui {
-                                val item = launchVMMapper.map(it.docs)
+                                val item = launchVMMapper.map(docs.docs)
+                                //feed RC
                                 launchList.addAll(item)
+                                if (docs.page == 1 && docs.totalDoc != null) {
+                                    //get total size of docs when 1st page being loaded
+                                    _launchesCounter.value = docs.totalDoc
+                                }
                                 launchQueryEntity = launchQueryEntity.copy(
-                                    nextPage = it.nextPage,
-                                    hasNextPage = it.hasNextPage
+                                    nextPage = docs.nextPage,
+                                    hasNextPage = docs.hasNextPage
                                 )
                                 _launchListVS.value = ViewState.Success(item)
                             }
@@ -100,5 +109,6 @@ class HomeViewModel(
     fun clearLaunches() {
         launchList.clear()
         launchQueryEntity = LaunchQueryEntity()
+        _launchesCounter.value = 0
     }
 }

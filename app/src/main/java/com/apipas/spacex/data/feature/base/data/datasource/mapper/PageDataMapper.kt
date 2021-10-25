@@ -13,6 +13,6 @@ class PageDataMapper<T : Any, E : Any> : Mapper<PagerResponseDto<T>, PagerEntity
             limit = origin.limit,
             page = origin.page,
             nextPage = origin.nextPage,
-            totalPages = origin.totalPages
+            totalDoc = origin.totalDocs
         )
 }

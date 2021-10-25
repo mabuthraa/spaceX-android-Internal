@@ -26,7 +26,7 @@ data class PagerResponseDto<T : Any>(
     val totalPages: Int? = null,
 
     @Json(name = "prevPage")
-    val prevPage: Any? = null,
+    val prevPage: Int? = null,
 
     @Json(name = "page")
     val page: Int? = null,
