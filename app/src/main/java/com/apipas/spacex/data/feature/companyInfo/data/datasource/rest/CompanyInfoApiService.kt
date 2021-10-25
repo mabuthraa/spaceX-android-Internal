@@ -5,5 +5,5 @@ import retrofit2.http.GET
 interface CompanyInfoApiService {
 
     @GET("company")
-    suspend fun getCompanyInfo(): CompanyInfoDto
+    suspend fun getCompanyInfo(): CompanyInfoResponseDto
 }

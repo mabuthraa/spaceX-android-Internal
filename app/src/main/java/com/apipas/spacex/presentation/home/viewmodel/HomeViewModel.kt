@@ -26,8 +26,8 @@ class HomeViewModel(
     val companyInfoVS: LiveData<ViewState<HomeCompanyModel>> get() = _companyInfoVS
 
     //companyInfo VS
-    private val _launchListVS = MutableLiveData<ViewState<HomeLaunchItemModel>>()
-    val launchListVSModel: LiveData<ViewState<HomeLaunchItemModel>> get() = _launchListVS
+    private val _launchListVS = MutableLiveData<ViewState<List<HomeLaunchItemModel>>>()
+    val launchListVSModel: LiveData<ViewState<List<HomeLaunchItemModel>>> get() = _launchListVS
     val launchList = ObservableArrayList<HomeLaunchItemModel>()
 
     //mappers to models
@@ -67,8 +67,8 @@ class HomeViewModel(
                     getLaunchesInteractor.execute(Interactor.None)
                         .collect {
                             ui {
-                                val item = launchVMMapper.map(it)
-                                launchList.add(item)
+                                val item = launchVMMapper.map(it.docs)
+                                launchList.addAll(item)
                                 _launchListVS.value = ViewState.Success(item)
                             }
                         }

@@ -2,7 +2,7 @@ package com.apipas.spacex.data.feature.companyInfo.data.datasource.rest
 
 import com.squareup.moshi.Json
 
-data class CompanyInfoDto(
+data class CompanyInfoResponseDto(
 
     @Json(name = "summary")
     val summary: String? = null,

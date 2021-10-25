@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.flow
 
 class CompanyInfoDataStore(private val companyInfoApiService: CompanyInfoApiService) {
 
-    fun getCompanyInfo(): Flow<CompanyInfoDto> = flow {
+    fun getCompanyInfo(): Flow<CompanyInfoResponseDto> = flow {
         emit(companyInfoApiService.getCompanyInfo())
     }
 }
