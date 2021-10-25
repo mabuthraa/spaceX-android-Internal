@@ -22,4 +22,6 @@
     <string name="home_launch_item_rocket">Rocket:</string>
     <string name="home_launch_item_days_from">Days from now:</string>
     <string name="home_launch_item_days_since">Days since now:</string>
+    <string name="home_company_title">COMPANY</string>
+    <string name="home_launches_title">LAUNCHES</string>
 </resources>

@@ -16,4 +16,16 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="home_section">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/gray_dark</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginStart">@dimen/margin_padding_size_16</item>
+        <item name="android:layout_marginEnd">@dimen/margin_padding_size_16</item>
+        <item name="android:layout_marginBottom">@dimen/margin_padding_size_8</item>
+        <item name="android:layout_marginTop">@dimen/margin_padding_size_4</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Small</item>
+    </style>
+
 </resources>

@@ -22,24 +22,37 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <TextView
+                android:id="@+id/home_company_title"
+                style="@style/home_section"
+                android:text='@string/home_company_title'
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
             <FrameLayout
                 android:id="@+id/home_company_info_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/home_company_title">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_padding_size_8"
+                    android:layout_marginStart="@dimen/margin_padding_size_16"
+                    android:layout_marginEnd="@dimen/margin_padding_size_16"
+                    android:layout_marginBottom="@dimen/margin_padding_size_8"
+
                     android:text='@{vm.companyInfoVS.toData() != null ? vm.companyInfoVS.toData().getCompanyInfoParagraph(context) : null}'
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     app:showOnSuccess="@{vm.companyInfoVS}"
                     tools:text="@string/home_company" />
 
-                <include layout="@layout/view_simple_error"
+                <include
+                    layout="@layout/view_simple_error"
                     app:showOnError="@{vm.companyInfoVS}" />
 
                 <include
@@ -51,13 +64,21 @@
             </FrameLayout>
 
 
+            <TextView
+                android:id="@+id/home_launches_title"
+                style="@style/home_section"
+                android:text='@string/home_launches_title'
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/home_company_info_container" />
+
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/home_company_info_container">
+                app:layout_constraintTop_toBottomOf="@id/home_launches_title">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/launch_list"
@@ -68,7 +89,8 @@
                     app:layoutId="@{R.layout.item_home_launch_view}"
                     app:viewModel="@{vm}" />
 
-                <include layout="@layout/view_simple_error"
+                <include
+                    layout="@layout/view_simple_error"
                     app:showOnError="@{vm.launchListVS}" />
 
                 <include
