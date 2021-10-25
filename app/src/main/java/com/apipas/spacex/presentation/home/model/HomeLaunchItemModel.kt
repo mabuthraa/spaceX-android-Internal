@@ -19,7 +19,7 @@ data class HomeLaunchItemModel(
     val rocket: String? = null,
     val imageUrl: String? = null
 ) {
-    
+
     val stateImageUrlRes: Int? by lazy {
         when (success) {
             true -> R.drawable.ic_launch_success
@@ -60,6 +60,5 @@ data class HomeLaunchItemModel(
                 context.getString(R.string.home_launch_item_from, value)
         }
     }
-
 }
 
