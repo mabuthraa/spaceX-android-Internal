@@ -11,6 +11,7 @@ import com.apipas.spacex.presentation.home.model.HomeCompanyModel
 import com.apipas.spacex.presentation.home.model.HomeLaunchItemModel
 import com.apipas.spacex.presentation.home.model.mapper.HomeCompanyInfoVMMapper
 import com.apipas.spacex.presentation.home.model.mapper.HomeLaunchVMMapper
+import com.apipas.spacex.util.Log
 import com.apipas.spacex.util.io
 import com.apipas.spacex.util.ui
 import com.carlosgub.coroutines.core.interactor.Interactor
@@ -101,6 +102,18 @@ class HomeViewModel(
         }
     }
 
+    var countPreReload = 0
+    fun onLoadMore() {
+        loadNextLaunches()
+//        return if (count > countPreReload) {
+//            countPreReload = count
+//            loadNextLaunches()
+//             true
+//        } else {
+//            Log.d("Nooo")
+//            false
+//        }
+    }
 
     fun loadNextLaunches() {
         loadLaunchList(false)

@@ -22,7 +22,7 @@ fun setVisibleOrInvisible(view: View, visible: Boolean) {
 fun setShowOnLoading(view: View, viewState: ViewState<*>) {
     view.visibility = when (viewState) {
         ViewState.Loading -> View.VISIBLE
-        else -> View.GONE
+        else -> View.INVISIBLE
     }
 }
 
