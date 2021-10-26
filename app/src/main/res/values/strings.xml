@@ -19,4 +19,7 @@
     <string name="home_launch_item_today">Today</string>
     <string name="home_launch_item_since">+%1$d days</string>
     <string name="home_launch_item_from">%1$d days</string>
+    <string name="action_filter">Filter</string>
+    <string name="filter_title">Filters</string>
+    <string name="media_title">Media</string>
 </resources>

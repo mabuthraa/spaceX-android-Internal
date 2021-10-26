@@ -9,14 +9,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.apipas.spacex.BR
-import com.apipas.spacex.presentation.base.event.common.LiveEvent
+import com.apipas.spacex.presentation.base.event.base.LiveEvent
+import com.apipas.spacex.presentation.base.event.common.GoToEvent
 import com.apipas.spacex.presentation.base.viewmodel.BaseViewModel
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import kotlin.reflect.KClass
 
 
-abstract class MvvmFragment<B : ViewDataBinding, VM : BaseViewModel>(
+abstract class BaseFragment<B : ViewDataBinding, VM : BaseViewModel>(
     @LayoutRes val layoutId: Int, viewModelClass: KClass<VM>
 ) : Fragment() {
 
@@ -30,11 +32,9 @@ abstract class MvvmFragment<B : ViewDataBinding, VM : BaseViewModel>(
         initVM()
     }
 
-    /**
-     * initVM used to prepare VM before being added to layout
-     */
-    open fun initVM() {
-        // do nothing ..
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initSubscribers()
     }
 
     override fun onCreateView(
@@ -51,6 +51,19 @@ abstract class MvvmFragment<B : ViewDataBinding, VM : BaseViewModel>(
     override fun onDestroy() {
         lifecycle.removeObserver(viewModel)
         super.onDestroy()
+    }
+
+    private fun initSubscribers() {
+        subscribe(GoToEvent::class, Observer { event ->
+            findNavController().navigate(event.direction)
+        })
+    }
+
+    /**
+     * initVM used to prepare VM before being added to layout
+     */
+    open fun initVM() {
+        // do nothing ..
     }
 
     protected fun <T : LiveEvent> subscribe(eventClass: KClass<T>, eventObserver: Observer<T>) {

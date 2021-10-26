@@ -19,7 +19,7 @@ fun setVisibleOrInvisible(view: View, visible: Boolean) {
 }
 
 @BindingAdapter("showOnLoading")
-fun setShowOnLoading(view: View, viewState: ViewState<*>) {
+fun setShowOnLoading(view: View, viewState: ViewState<*>?) {
     view.visibility = when (viewState) {
         ViewState.Loading -> View.VISIBLE
         else -> View.INVISIBLE
@@ -27,7 +27,7 @@ fun setShowOnLoading(view: View, viewState: ViewState<*>) {
 }
 
 @BindingAdapter("showOnError")
-fun setShowOnError(view: View, viewState: ViewState<*>) {
+fun setShowOnError(view: View, viewState: ViewState<*>?) {
     view.visibility = when (viewState) {
         is ViewState.Error -> View.VISIBLE
         else -> View.GONE
@@ -35,8 +35,8 @@ fun setShowOnError(view: View, viewState: ViewState<*>) {
 }
 
 @BindingAdapter("showOnSuccess")
-fun setShowOnSuccess(view: View, viewState: ViewState<*>) {
-    view.visibility = when (viewState) {
+fun setShowOnSuccess(view: View, viewState: ViewState<*>?) {
+    when (viewState) {
         is ViewState.Success -> View.VISIBLE
         else -> View.INVISIBLE
     }

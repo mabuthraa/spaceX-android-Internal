@@ -24,39 +24,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:id="@+id/home_company_debug"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="@{()->vm.loadNextLaunches()}"
-                    android:text="Next" />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="@{()->vm.clearLaunches()}"
-                    android:text="clear" />
-            </LinearLayout>
-
             <TextView
                 android:id="@+id/home_company_title"
                 style="@style/home_section"
                 android:text='@string/home_company_title'
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/home_company_debug"
-
-                />
-
-            <!--            app:layout_constraintTop_toTopOf="parent"-->
+                app:layout_constraintTop_toTopOf="parent" />
 
             <FrameLayout
                 android:id="@+id/home_company_info_container"

@@ -35,6 +35,7 @@
             android:background="?android:attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
+            android:onClick="@{()-> vm.onLaunchItemClick(item)}"
             android:paddingTop="@dimen/margin_padding_size_8"
             android:paddingBottom="@dimen/margin_padding_size_8">
 

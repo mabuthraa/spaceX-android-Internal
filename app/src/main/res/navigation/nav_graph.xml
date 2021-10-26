@@ -7,8 +7,27 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.apipas.spacex.presentation.home.HomeFragment"
-        android:label="HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        android:name="com.apipas.spacex.presentation.home.fragment.HomeFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_filterFragment"
+            app:destination="@id/filterFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_mediaFragment"
+            app:destination="@id/mediaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/filterFragment"
+        android:name="com.apipas.spacex.presentation.filter.fragment.FilterFragment"
+        android:label="@string/filter_title" />
+    <fragment
+        android:id="@+id/mediaFragment"
+        android:name="com.apipas.spacex.presentation.media.fragment.MediaFragment"
+        android:label="@string/media_title">
+        <argument
+            android:name="data"
+            app:argType="com.apipas.spacex.presentation.home.model.HomeLaunchItemModel" />
+    </fragment>
 
 </navigation>

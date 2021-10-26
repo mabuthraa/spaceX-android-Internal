@@ -3,15 +3,17 @@ package com.apipas.spacex.presentation.home.viewmodel
 import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.*
 import com.apipas.spacex.data.feature.companyInfo.domain.interactor.GetCompanyInfoInteractor
+import com.apipas.spacex.data.feature.companyInfo.domain.model.CompanyInfoEntity
 import com.apipas.spacex.data.feature.launch.domain.interactor.GetLaunchesInteractor
 import com.apipas.spacex.data.feature.launch.domain.model.LaunchQueryEntity
+import com.apipas.spacex.presentation.base.event.common.GoToEvent
 import com.apipas.spacex.presentation.base.viewmodel.BaseViewModel
 import com.apipas.spacex.presentation.base.viewmodel.ViewState
+import com.apipas.spacex.presentation.home.fragment.HomeFragmentDirections
 import com.apipas.spacex.presentation.home.model.HomeCompanyModel
 import com.apipas.spacex.presentation.home.model.HomeLaunchItemModel
 import com.apipas.spacex.presentation.home.model.mapper.HomeCompanyInfoVMMapper
 import com.apipas.spacex.presentation.home.model.mapper.HomeLaunchVMMapper
-import com.apipas.spacex.util.Log
 import com.apipas.spacex.util.io
 import com.apipas.spacex.util.ui
 import com.carlosgub.coroutines.core.interactor.Interactor
@@ -51,21 +53,11 @@ class HomeViewModel(
     }
 
     private fun getCompanyInfo() {
-        viewModelScope.launch {
-            _companyInfoVS.value = ViewState.Loading
-            try {
-                io {
-                    getCompanyInfoInteractor.execute(Interactor.None)
-                        .collect {
-                            ui {
-                                _companyInfoVS.value = ViewState.Success(companyVMMapper.map(it))
-                            }
-                        }
-                }
-            } catch (e: Exception) {
-                ui { _companyInfoVS.value = ViewState.Error(e) }
-            }
-        }
+        simpleLaunch<CompanyInfoEntity, HomeCompanyModel>(
+            viewState = _companyInfoVS,
+            flowExecutionBlock = getCompanyInfoInteractor.execute(Interactor.None),
+            mapper = companyVMMapper::map
+        )
     }
 
     private fun loadLaunchList(forceUpdate: Boolean) {
@@ -102,17 +94,8 @@ class HomeViewModel(
         }
     }
 
-    var countPreReload = 0
     fun onLoadMore() {
         loadNextLaunches()
-//        return if (count > countPreReload) {
-//            countPreReload = count
-//            loadNextLaunches()
-//             true
-//        } else {
-//            Log.d("Nooo")
-//            false
-//        }
     }
 
     fun loadNextLaunches() {
@@ -123,5 +106,13 @@ class HomeViewModel(
         launchList.clear()
         launchQueryEntity = LaunchQueryEntity()
         _launchesCounter.value = 0
+    }
+
+    fun onFilterClick() {
+        publish(GoToEvent(HomeFragmentDirections.actionHomeFragmentToFilterFragment()))
+    }
+
+    fun onLaunchItemClick(launchItemModel: HomeLaunchItemModel) {
+        publish(GoToEvent(HomeFragmentDirections.actionHomeFragmentToMediaFragment(launchItemModel)))
     }
 }

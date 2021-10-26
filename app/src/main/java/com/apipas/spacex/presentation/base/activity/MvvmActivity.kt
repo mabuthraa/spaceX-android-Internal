@@ -8,7 +8,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import com.apipas.spacex.BR
 import com.apipas.spacex.presentation.base.viewmodel.BaseViewModel
-import com.apipas.spacex.presentation.base.event.common.LiveEvent
+import com.apipas.spacex.presentation.base.event.base.LiveEvent
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import kotlin.reflect.KClass
 

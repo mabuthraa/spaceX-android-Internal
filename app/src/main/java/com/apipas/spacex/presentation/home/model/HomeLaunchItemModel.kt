@@ -1,13 +1,16 @@
 package com.apipas.spacex.presentation.home.model
 
 import android.content.Context
+import android.os.Parcelable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.apipas.spacex.R
 import com.apipas.spacex.util.extension.toDateTimeFormat
+import kotlinx.parcelize.Parcelize
 import java.util.*
 import java.util.concurrent.TimeUnit
 
+@Parcelize
 data class HomeLaunchItemModel(
     val id: String,
     val staticFireDateUtc: Date? = null,//to be removed
@@ -18,7 +21,7 @@ data class HomeLaunchItemModel(
     val upcoming: Boolean? = null,
     val rocket: String? = null,
     val imageUrl: String? = null
-) {
+) : Parcelable {
 
     val stateImageUrlRes: Int? by lazy {
         when (success) {
