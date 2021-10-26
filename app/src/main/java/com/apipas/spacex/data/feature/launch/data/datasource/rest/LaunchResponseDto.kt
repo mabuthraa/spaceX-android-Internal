@@ -3,7 +3,7 @@ package com.apipas.spacex.data.feature.launch.data.datasource.rest
 import com.squareup.moshi.Json
 import java.util.*
 
-data class LaunchDto(
+data class LaunchResponseDto(
 
     @Json(name = "launchpad")
     val launchpad: String? = null,

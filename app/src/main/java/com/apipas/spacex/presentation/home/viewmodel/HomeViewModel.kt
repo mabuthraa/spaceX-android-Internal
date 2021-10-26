@@ -4,12 +4,14 @@ import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.*
 import com.apipas.spacex.data.feature.companyInfo.domain.interactor.GetCompanyInfoInteractor
 import com.apipas.spacex.data.feature.launch.domain.interactor.GetLaunchesInteractor
+import com.apipas.spacex.data.feature.launch.domain.model.LaunchQueryEntity
 import com.apipas.spacex.presentation.base.viewmodel.BaseViewModel
 import com.apipas.spacex.presentation.base.viewmodel.ViewState
 import com.apipas.spacex.presentation.home.model.HomeCompanyModel
 import com.apipas.spacex.presentation.home.model.HomeLaunchItemModel
 import com.apipas.spacex.presentation.home.model.mapper.HomeCompanyInfoVMMapper
 import com.apipas.spacex.presentation.home.model.mapper.HomeLaunchVMMapper
+import com.apipas.spacex.util.Log
 import com.apipas.spacex.util.io
 import com.apipas.spacex.util.ui
 import com.carlosgub.coroutines.core.interactor.Interactor
@@ -25,19 +27,27 @@ class HomeViewModel(
     private val _companyInfoVS = MutableLiveData<ViewState<HomeCompanyModel>>()
     val companyInfoVS: LiveData<ViewState<HomeCompanyModel>> get() = _companyInfoVS
 
+    //launchesCounter
+    private val _launchesCounter = MutableLiveData<Int>().apply { value = 0 }
+    val launchesCounter: LiveData<Int> get() = _launchesCounter
+
     //companyInfo VS
-    private val _launchListVS = MutableLiveData<ViewState<HomeLaunchItemModel>>()
-    val launchListVSModel: LiveData<ViewState<HomeLaunchItemModel>> get() = _launchListVS
+    private val _launchListVS = MutableLiveData<ViewState<List<HomeLaunchItemModel>>>()
+    val launchListVSModel: LiveData<ViewState<List<HomeLaunchItemModel>>> get() = _launchListVS
     val launchList = ObservableArrayList<HomeLaunchItemModel>()
 
     //mappers to models
     private val companyVMMapper by lazy { HomeCompanyInfoVMMapper() }
     private val launchVMMapper by lazy { HomeLaunchVMMapper() }
 
+    //launchQuery
+    private var launchQueryEntity = LaunchQueryEntity()
+
+
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     private fun loadData() {
         getCompanyInfo()
-        getInitLaunchList()
+        loadLaunchList(true)
     }
 
     private fun getCompanyInfo() {
@@ -58,17 +68,30 @@ class HomeViewModel(
         }
     }
 
-    private fun getInitLaunchList() {
-        launchList.clear()
+    private fun loadLaunchList(forceUpdate: Boolean) {
+        if (forceUpdate) clearLaunches()
+        if (!launchQueryEntity.hasNextPage) {
+            // no pages to be loaded
+            return
+        }
         viewModelScope.launch {
             _launchListVS.value = ViewState.Loading
             try {
                 io {
-                    getLaunchesInteractor.execute(Interactor.None)
-                        .collect {
+                    getLaunchesInteractor.execute(GetLaunchesInteractor.Params(launchQueryEntity.copy()))
+                        .collect { docs ->
                             ui {
-                                val item = launchVMMapper.map(it)
-                                launchList.add(item)
+                                val item = launchVMMapper.map(docs.docs)
+                                //feed RC
+                                launchList.addAll(item)
+                                if (docs.page == 1 && docs.totalDoc != null) {
+                                    //get total size of docs when 1st page being loaded
+                                    _launchesCounter.value = docs.totalDoc
+                                }
+                                launchQueryEntity = launchQueryEntity.copy(
+                                    nextPage = docs.nextPage,
+                                    hasNextPage = docs.hasNextPage
+                                )
                                 _launchListVS.value = ViewState.Success(item)
                             }
                         }
@@ -77,5 +100,28 @@ class HomeViewModel(
                 ui { _launchListVS.value = ViewState.Error(e) }
             }
         }
+    }
+
+    var countPreReload = 0
+    fun onLoadMore() {
+        loadNextLaunches()
+//        return if (count > countPreReload) {
+//            countPreReload = count
+//            loadNextLaunches()
+//             true
+//        } else {
+//            Log.d("Nooo")
+//            false
+//        }
+    }
+
+    fun loadNextLaunches() {
+        loadLaunchList(false)
+    }
+
+    fun clearLaunches() {
+        launchList.clear()
+        launchQueryEntity = LaunchQueryEntity()
+        _launchesCounter.value = 0
     }
 }

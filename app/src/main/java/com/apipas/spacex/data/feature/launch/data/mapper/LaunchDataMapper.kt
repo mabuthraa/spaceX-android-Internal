@@ -1,11 +1,11 @@
 package com.apipas.spacex.data.feature.launch.data.mapper
 
 import com.apipas.spacex.data.common.mapper.Mapper
-import com.apipas.spacex.data.feature.launch.data.datasource.rest.LaunchDto
+import com.apipas.spacex.data.feature.launch.data.datasource.rest.LaunchResponseDto
 import com.apipas.spacex.data.feature.launch.domain.model.LaunchEntity
 
-class LaunchDataMapper : Mapper<LaunchDto, LaunchEntity> {
-    override fun map(origin: LaunchDto) =
+class LaunchDataMapper : Mapper<LaunchResponseDto, LaunchEntity> {
+    override fun map(origin: LaunchResponseDto) =
         LaunchEntity(
             id = origin.id!!, //todo add special exception for mapper
             staticFireDateUtc = origin.staticFireDateUtc,

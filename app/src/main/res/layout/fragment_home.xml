@@ -15,12 +15,36 @@
     </data>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/homeScrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:onLoadMore="@{()->vm.onLoadMore()}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/home_company_debug"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->vm.loadNextLaunches()}"
+                    android:text="Next" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->vm.clearLaunches()}"
+                    android:text="clear" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/home_company_title"
@@ -28,8 +52,11 @@
                 android:text='@string/home_company_title'
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/home_company_debug"
 
+                />
+
+            <!--            app:layout_constraintTop_toTopOf="parent"-->
 
             <FrameLayout
                 android:id="@+id/home_company_info_container"
@@ -45,7 +72,6 @@
                     android:layout_marginStart="@dimen/margin_padding_size_16"
                     android:layout_marginEnd="@dimen/margin_padding_size_16"
                     android:layout_marginBottom="@dimen/margin_padding_size_8"
-
                     android:text='@{vm.companyInfoVS.toData() != null ? vm.companyInfoVS.toData().getCompanyInfoParagraph(context) : null}'
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     app:showOnSuccess="@{vm.companyInfoVS}"
@@ -67,12 +93,12 @@
             <TextView
                 android:id="@+id/home_launches_title"
                 style="@style/home_section"
-                android:text='@string/home_launches_title'
+                android:text="@{vm.launchesCounter  > 0 ? String.format(@string/home_launches_title_with_count, vm.launchesCounter) : @string/home_launches_title}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/home_company_info_container" />
 
-            <FrameLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -91,15 +117,18 @@
 
                 <include
                     layout="@layout/view_simple_error"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/launch_list"
                     app:showOnError="@{vm.launchListVSModel}" />
 
                 <include
                     layout="@layout/view_loading_transparent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:showOnLoading="@{vm.launchListVSModel}"
-                    tools:visibility="gone" />
-            </FrameLayout>
+                    android:layout_below="@id/launch_list"
+                    app:showOnLoading="@{vm.launchListVSModel}" />
+            </RelativeLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
