@@ -1,4 +1,4 @@
-package com.apipas.spacex.presentation.base.viewmodel
+package com.apipas.spacex.presentation.base.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.apipas.spacex.BR
 import com.apipas.spacex.presentation.base.event.common.LiveEvent
+import com.apipas.spacex.presentation.base.viewmodel.BaseViewModel
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import kotlin.reflect.KClass
 
@@ -20,6 +21,7 @@ abstract class MvvmFragment<B : ViewDataBinding, VM : BaseViewModel>(
 ) : Fragment() {
 
     protected lateinit var binding: B
+    private var rootLayout: View? = null
     open val viewModel: VM by lazy { getViewModel(clazz = viewModelClass) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,8 +44,6 @@ abstract class MvvmFragment<B : ViewDataBinding, VM : BaseViewModel>(
     ): View? {
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         binding.lifecycleOwner = this
-//        binding.setVariable(BR.lifecycle, viewLifecycleOwner) //todo to be added
-
         binding.setVariable(BR.vm, viewModel)
         return binding.root
     }
