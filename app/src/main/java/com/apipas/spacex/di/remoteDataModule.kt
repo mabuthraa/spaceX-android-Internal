@@ -2,12 +2,10 @@ package com.apipas.spacex.di
 
 import android.content.Context
 import com.apipas.spacex.data.feature.companyInfo.data.datasource.rest.CompanyInfoApiService
-import com.apipas.spacex.data.feature.companyInfo.data.datasource.rest.CompanyInfoDataStore
 import com.apipas.spacex.data.feature.launch.data.datasource.rest.LaunchApiService
-import com.apipas.spacex.data.remote.AppOkHttpClient
-import com.apipas.spacex.data.remote.client.api.AppRetrofit
-import com.apipas.spacex.data.remote.service.NoteServiceApi
+import com.apipas.spacex.data.common.network.AppOkHttpClient
 import okhttp3.OkHttpClient
+import com.apipas.spacex.data.common.network.AppRetrofit
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import kotlin.reflect.KClass
@@ -17,7 +15,6 @@ val remoteDataModule = module {
     single { provideRetrofit(get()) }
 
     //api
-    factory { provideApi<NoteServiceApi>(get(), NoteServiceApi::class) }
     factory { provideApi<CompanyInfoApiService>(get(), CompanyInfoApiService::class) }
     factory { provideApi<LaunchApiService>(get(), LaunchApiService::class) }
 }

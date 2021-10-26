@@ -21,6 +21,8 @@
         <entry key="app/src/main/res/layout/view_home_launch_param.xml" value="0.19739583333333333" />
         <entry key="app/src/main/res/layout/view_loading_transparent.xml" value="0.2758152173913043" />
         <entry key="app/src/main/res/layout/view_simple_error.xml" value="0.29375" />
+        <entry key="app/src/main/res/menu/menu_main.xml" value="0.19427083333333334" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.21041666666666667" />
       </map>
     </option>
   </component>

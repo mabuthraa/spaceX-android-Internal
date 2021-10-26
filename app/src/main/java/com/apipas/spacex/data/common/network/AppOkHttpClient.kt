@@ -1,4 +1,4 @@
-package com.apipas.spacex.data.remote
+package com.apipas.spacex.data.common.network
 
 import android.content.Context
 import com.readystatesoftware.chuck.ChuckInterceptor

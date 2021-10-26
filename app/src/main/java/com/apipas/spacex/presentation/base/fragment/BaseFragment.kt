@@ -27,24 +27,11 @@ abstract class BaseFragment<B : ViewDataBinding, VM : BaseViewModel>(
         savedInstanceState: Bundle?
     ): View? {
         val view = super.onCreateView(inflater, container, savedInstanceState)
-        rootLayout = view?.let { it.rootView }
+        rootLayout = view?.rootView
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initSnackBar()
-    }
-
-    open fun initSnackBar() {
-        // Show a snackbar whenever the [ViewModel.snackbar] is updated a non-null value
-        viewModel.snackbar.observe(viewLifecycleOwner, Observer { text ->
-            text?.let {
-                rootLayout?.let { it1 ->
-                    Snackbar.make(it1, text, Snackbar.LENGTH_SHORT).show()
-                    viewModel.resetSnackBar()
-                }
-            }
-        })
     }
 }

@@ -1,4 +1,4 @@
-package com.apipas.spacex.data.remote.client.api
+package com.apipas.spacex.data.common.network
 
 import com.apipas.spacex.app.Constants
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory

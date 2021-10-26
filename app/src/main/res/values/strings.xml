@@ -1,19 +1,10 @@
 <resources>
     <string name="app_name">SpaceX</string>
-    <string name="action_discard">Discard</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="note_list_fragment_label">SpaceX</string>
-    <string name="note_detail_fragment_label">Note detail</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="global_unknown_error">Unknown Error </string>
     <string name="global_no_network_connection">No internet connect</string>
-    <string name="global_server_error">Server  Error</string>
-    <string name="note_list_last_update">"Last Update: %1$s"</string>
-    <string name="action_delete">Delete</string>
+
     <string name="home_company"><![CDATA[<b>%1$s</b> was founded by <b>%2$s</b> in <b>%3$d</b>. It has now <b>%4$d</b> employees, <b>%5$d</b> launch sites, and is valued at USD <b>%6$s</b>]]></string>
     <string name="general_embedded_error">Oops! It\'s an error ⚠️ Data cannot be loaded</string>
     <string name="home_launch_item_patch_description">Patch</string>
