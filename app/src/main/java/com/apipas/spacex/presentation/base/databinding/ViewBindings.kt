@@ -2,10 +2,19 @@ package com.apipas.spacex.presentation.base.databinding
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.databinding.InverseBindingAdapter
+import androidx.databinding.InverseBindingListener
+import androidx.lifecycle.MutableLiveData
 import com.apipas.spacex.R
 import com.apipas.spacex.presentation.base.viewmodel.ViewState
 import com.bumptech.glide.Glide
+import com.google.android.material.slider.RangeSlider
+import com.google.android.material.slider.Slider
+import androidx.annotation.NonNull
+import androidx.annotation.StringRes
+import com.apipas.spacex.util.extension.toHtml
 
 
 @BindingAdapter("visibleOrGone")
@@ -50,4 +59,33 @@ fun setImage(view: ImageView, urlImage: String?) {
         .centerInside()
         .placeholder(R.drawable.ic_patch_placeholder)
         .into(view);
+}
+
+
+@BindingAdapter("values")
+fun setRangeSlider(slider: RangeSlider, newList: List<Float>) {
+    // Important to break potential infinite loops.
+    if (slider.values != newList) {
+        slider.values = newList
+    }
+}
+
+@InverseBindingAdapter(attribute = "values")
+fun getRangeSlider(slider: RangeSlider): List<Float> {
+    return slider.values
+}
+
+@BindingAdapter("app:valuesAttrChanged")
+fun setListeners(
+    slider: RangeSlider,
+    attrChange: InverseBindingListener
+) {
+    val listener = RangeSlider.OnChangeListener { _, _, _ -> attrChange.onChange() }
+    slider.addOnChangeListener(listener)
+}
+
+
+@BindingAdapter(value = ["stringTemplate", "dataList"], requireAll = true)
+fun setTextAsHtml(textVew: TextView, @StringRes stringRes: Int, dataList: List<Float>) {
+    textVew.text = textVew.context.getString(stringRes, dataList).toHtml()
 }

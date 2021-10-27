@@ -1,4 +1,4 @@
-package com.apipas.spacex.presentation.base.fragment
+package com.apipas.spacex.presentation.base.dialog
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,20 +9,18 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.apipas.spacex.BR
-import com.apipas.spacex.R
 import com.apipas.spacex.presentation.base.event.base.LiveEvent
 import com.apipas.spacex.presentation.base.event.common.GoToEvent
 import com.apipas.spacex.presentation.base.viewmodel.BaseViewModel
-import com.apipas.spacex.presentation.filter.fragment.FilterDialogFragment
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import kotlin.reflect.KClass
 
 
-abstract class BaseFragment<B : ViewDataBinding, VM : BaseViewModel>(
+abstract class BaseBottomSheetDialogFragment<B : ViewDataBinding, VM : BaseViewModel>(
     @LayoutRes val layoutId: Int, viewModelClass: KClass<VM>
 ) : BottomSheetDialogFragment() {
 

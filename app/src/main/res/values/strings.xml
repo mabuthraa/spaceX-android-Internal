@@ -22,4 +22,11 @@
     <string name="action_filter">Filter</string>
     <string name="filter_title">Filters</string>
     <string name="media_title">Media</string>
+    <string name="filter_year_bar">Launch year: </string>
+    <string name="filter_year_bar_label">%1$.0f to %2$.0f</string>
+    <string name="filter_year_bar_label_to">" to "</string>
+    <string name="only_success_launch">Successful launch\n<small>(not the landing of the core)</small></string>
+    <string name="filter_sort_by">Sort:</string>
+    <string name="filter_sort_launch_year_asd">by newest launch time</string>
+    <string name="filter_sort_launch_year_desc">by oldest launch time</string>
 </resources>

@@ -4,13 +4,18 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../../../../../layout/custom_preview.xml" value="0.13645833333333332" />
+        <entry key="app/src/main/res/drawable/bgr_bottom_sheet.xml" value="0.5390625" />
         <entry key="app/src/main/res/drawable/ic_baseline_thumb_up_24.xml" value="0.1375" />
+        <entry key="app/src/main/res/drawable/ic_holder.xml" value="0.5390625" />
         <entry key="app/src/main/res/drawable/ic_lauch_success.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/drawable/ic_launch_failure.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/drawable/ic_launch_success.xml" value="0.1375" />
         <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/drawable/ic_no_image.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout-v23/dialog_filter.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2758152173913043" />
+        <entry key="app/src/main/res/layout/dialog_filter.xml" value="0.4156273905720756" />
+        <entry key="app/src/main/res/layout/dialog_media.xml" value="0.19427083333333334" />
         <entry key="app/src/main/res/layout/fragment_filter_bottom_sheet.xml" value="0.19427083333333334" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2758152173913043" />
         <entry key="app/src/main/res/layout/fragment_media.xml" value="0.19427083333333334" />

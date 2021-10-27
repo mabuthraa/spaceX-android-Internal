@@ -11,23 +11,26 @@
         android:label="@string/app_name"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_filterFragment"
-            app:destination="@id/filterFragment" />
+            android:id="@+id/action_homeFragment_to_mediaDialogFragment"
+            app:destination="@id/mediaDialogFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_mediaFragment"
-            app:destination="@id/mediaFragment" />
+            android:id="@+id/action_homeFragment_to_filterDialogFragment"
+            app:destination="@id/filterDialogFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/filterFragment"
-        android:name="com.apipas.spacex.presentation.filter.fragment.FilterFragment"
-        android:label="@string/filter_title" />
-    <fragment
-        android:id="@+id/mediaFragment"
-        android:name="com.apipas.spacex.presentation.media.fragment.MediaFragment"
-        android:label="@string/media_title">
+    <dialog
+        android:id="@+id/filterDialogFragment"
+        android:name="com.apipas.spacex.presentation.filter.fragment.FilterDialogFragment"
+        android:label="@string/filter_title"
+        tools:layout="@layout/dialog_filter" />
+    <dialog
+        android:id="@+id/mediaDialogFragment"
+        android:name="com.apipas.spacex.presentation.media.fragment.MediaDialogFragment"
+        android:label="@string/media_title"
+        tools:layout="@layout/dialog_media" >
         <argument
-            android:name="data"
+            android:name="HomeLaunchItemModel"
             app:argType="com.apipas.spacex.presentation.home.model.HomeLaunchItemModel" />
-    </fragment>
+    </dialog>
+
 
 </navigation>

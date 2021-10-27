@@ -14,6 +14,7 @@ import com.apipas.spacex.presentation.home.model.HomeCompanyModel
 import com.apipas.spacex.presentation.home.model.HomeLaunchItemModel
 import com.apipas.spacex.presentation.home.model.mapper.HomeCompanyInfoVMMapper
 import com.apipas.spacex.presentation.home.model.mapper.HomeLaunchVMMapper
+import com.apipas.spacex.util.NonNullMutableLiveData
 import com.apipas.spacex.util.io
 import com.apipas.spacex.util.ui
 import com.carlosgub.coroutines.core.interactor.Interactor
@@ -29,22 +30,22 @@ class HomeViewModel(
     private val _companyInfoVS = MutableLiveData<ViewState<HomeCompanyModel>>()
     val companyInfoVS: LiveData<ViewState<HomeCompanyModel>> get() = _companyInfoVS
 
-    //launchesCounter
-    private val _launchesCounter = MutableLiveData<Int>().apply { value = 0 }
-    val launchesCounter: LiveData<Int> get() = _launchesCounter
-
     //companyInfo VS
     private val _launchListVS = MutableLiveData<ViewState<List<HomeLaunchItemModel>>>()
-    val launchListVSModel: LiveData<ViewState<List<HomeLaunchItemModel>>> get() = _launchListVS
+    val launchListVS: LiveData<ViewState<List<HomeLaunchItemModel>>> get() = _launchListVS
+
     val launchList = ObservableArrayList<HomeLaunchItemModel>()
 
-    //mappers to models
-    private val companyVMMapper by lazy { HomeCompanyInfoVMMapper() }
-    private val launchVMMapper by lazy { HomeLaunchVMMapper() }
+    //launchesCounter
+    private val _launchesCounter = NonNullMutableLiveData<Int>(0)
+    val launchesCounter: LiveData<Int> get() = _launchesCounter
 
     //launchQuery
     private var launchQueryEntity = LaunchQueryEntity()
 
+    //mappers to models
+    private val companyVMMapper by lazy { HomeCompanyInfoVMMapper() }
+    private val launchVMMapper by lazy { HomeLaunchVMMapper() }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     private fun loadData() {
@@ -76,7 +77,7 @@ class HomeViewModel(
                                 val item = launchVMMapper.map(docs.docs)
                                 //feed RC
                                 launchList.addAll(item)
-                                if (docs.page == 1 && docs.totalDoc != null) {
+                                if (docs.page == 1) {
                                     //get total size of docs when 1st page being loaded
                                     _launchesCounter.value = docs.totalDoc
                                 }
@@ -94,25 +95,32 @@ class HomeViewModel(
         }
     }
 
-    fun onLoadMore() {
-        loadNextLaunches()
-    }
-
-    fun loadNextLaunches() {
-        loadLaunchList(false)
-    }
-
-    fun clearLaunches() {
+    private fun clearLaunches() {
         launchList.clear()
         launchQueryEntity = LaunchQueryEntity()
         _launchesCounter.value = 0
     }
 
+    fun onLoadMore() {
+        loadLaunchList(false)
+    }
+
+    fun onReload() {
+        getCompanyInfo()
+        loadLaunchList(true)
+    }
+
     fun onFilterClick() {
-        publish(GoToEvent(HomeFragmentDirections.actionHomeFragmentToFilterFragment()))
+        publish(GoToEvent(HomeFragmentDirections.actionHomeFragmentToFilterDialogFragment()))
     }
 
     fun onLaunchItemClick(launchItemModel: HomeLaunchItemModel) {
-        publish(GoToEvent(HomeFragmentDirections.actionHomeFragmentToMediaFragment(launchItemModel)))
+        publish(
+            GoToEvent(
+                HomeFragmentDirections.actionHomeFragmentToMediaDialogFragment(
+                    launchItemModel
+                )
+            )
+        )
     }
 }

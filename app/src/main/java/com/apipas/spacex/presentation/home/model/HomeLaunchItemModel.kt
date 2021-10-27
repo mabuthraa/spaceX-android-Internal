@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.apipas.spacex.R
 import com.apipas.spacex.util.extension.toDateTimeFormat
+import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -23,6 +24,7 @@ data class HomeLaunchItemModel(
     val imageUrl: String? = null
 ) : Parcelable {
 
+    @IgnoredOnParcel
     val stateImageUrlRes: Int? by lazy {
         when (success) {
             true -> R.drawable.ic_launch_success
@@ -31,8 +33,10 @@ data class HomeLaunchItemModel(
         }
     }
 
+    @IgnoredOnParcel
     val formattedLaunchDateTime: String by lazy { dateUtc?.toDateTimeFormat() ?: "" }
 
+    @IgnoredOnParcel
     private val remainingDaysAsValue: Int? by lazy {
         if (dateUtc != null) {
             val currentTime = Calendar.getInstance().timeInMillis
@@ -46,6 +50,7 @@ data class HomeLaunchItemModel(
         }
     }
 
+    @IgnoredOnParcel
     val remainingDaysKey: Int by lazy {
         if (remainingDaysAsValue != null && remainingDaysAsValue!! > 0)
             R.string.home_launch_item_days_since
