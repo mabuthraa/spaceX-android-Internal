@@ -8,12 +8,19 @@ import android.view.View
 import com.apipas.spacex.R
 import com.apipas.spacex.databinding.FragmentHomeBinding
 import com.apipas.spacex.presentation.base.fragment.BaseFragment
+import com.apipas.spacex.presentation.filter.viewmodel.FilterViewModel
 import com.apipas.spacex.presentation.home.viewmodel.HomeViewModel
+import com.apipas.spacex.util.Log
+import org.koin.androidx.viewmodel.ext.android.sharedStateViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     R.layout.fragment_home,
     HomeViewModel::class
 ) {
+    private val filterViewModel by sharedStateViewModel<FilterViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -22,6 +29,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.homeRefreshLayout.setColorSchemeResources(R.color.accent)
+        initObservers()
+    }
+
+    private fun initObservers() {
+        filterViewModel.filterModel.yearRange.observe(viewLifecycleOwner, {
+            Log.d("list: ${it.joinToString(" ")}")
+        })
+
+        filterViewModel.filterModel.sortModel.observe(viewLifecycleOwner, {
+            Log.d("list: ${it}")
+        })
+
+        filterViewModel.filterModel.onlyLaunchesModel.observe(viewLifecycleOwner, {
+            Log.d("list: ${it}")
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

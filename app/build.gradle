@@ -94,8 +94,11 @@ dependencies {
 
     // Koin for Android
     def koin_version = "3.1.2"
-    implementation "io.insert-koin:koin-core:$koin_version"
+//    implementation "io.insert-koin:koin-core:$koin_version"
+    // Koin main features for Android (Scope,ViewModel ...)
     implementation "io.insert-koin:koin-android:$koin_version"
+    // Koin Java Compatibility
+    implementation "io.insert-koin:koin-android-compat:$koin_version"
 
     //coroutines : Async/Flow
     def coroutines_version = "1.5.2"

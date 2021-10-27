@@ -19,7 +19,7 @@
     </fragment>
     <dialog
         android:id="@+id/filterDialogFragment"
-        android:name="com.apipas.spacex.presentation.filter.fragment.FilterDialogFragment"
+        android:name="com.apipas.spacex.presentation.filter.dialog.FilterDialogFragment"
         android:label="@string/filter_title"
         tools:layout="@layout/dialog_filter" />
     <dialog

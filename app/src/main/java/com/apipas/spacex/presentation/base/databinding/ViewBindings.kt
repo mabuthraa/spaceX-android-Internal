@@ -3,18 +3,15 @@ package com.apipas.spacex.presentation.base.databinding
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.StringRes
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
-import androidx.lifecycle.MutableLiveData
 import com.apipas.spacex.R
 import com.apipas.spacex.presentation.base.viewmodel.ViewState
+import com.apipas.spacex.util.extension.toHtml
 import com.bumptech.glide.Glide
 import com.google.android.material.slider.RangeSlider
-import com.google.android.material.slider.Slider
-import androidx.annotation.NonNull
-import androidx.annotation.StringRes
-import com.apipas.spacex.util.extension.toHtml
 
 
 @BindingAdapter("visibleOrGone")
