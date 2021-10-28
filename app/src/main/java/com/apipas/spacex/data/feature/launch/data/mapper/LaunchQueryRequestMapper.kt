@@ -1,18 +1,19 @@
 package com.apipas.spacex.data.feature.launch.data.mapper
 
 import com.apipas.spacex.data.common.mapper.Mapper
-import com.apipas.spacex.data.feature.launch.data.datasource.rest.LaunchRequestDto
+import com.apipas.spacex.data.feature.launch.data.datasource.rest.QueryRequestDto
 import com.apipas.spacex.data.feature.launch.domain.model.LaunchQueryEntity
 import com.apipas.spacex.util.Log
 import com.apipas.spacex.util.extension.toISO8601Format
 
-class LaunchQueryRequestMapper : Mapper<LaunchQueryEntity, LaunchRequestDto> {
-    override fun map(origin: LaunchQueryEntity): LaunchRequestDto {
-        return LaunchRequestDto(
-            options = LaunchRequestDto.Options(
+class LaunchQueryRequestMapper : Mapper<LaunchQueryEntity, QueryRequestDto> {
+    override fun map(origin: LaunchQueryEntity): QueryRequestDto {
+        return QueryRequestDto(
+            options = QueryRequestDto.Options(
                 limit = origin.limit,
                 page = origin.nextPage,
-                sort = convertSort(origin.filterEntity.sort)
+                sort = convertSort(origin.filterEntity.sort),
+                populate = getLaunchPopulate()
             ),
             query = mapOf(
                 QUERY_KEY to mapOf(
@@ -23,12 +24,20 @@ class LaunchQueryRequestMapper : Mapper<LaunchQueryEntity, LaunchRequestDto> {
         )
     }
 
+    private fun getLaunchPopulate(): List<Map<String, Any>> {
+        val rocketPath = mapOf(
+            "path" to "rocket",
+            "select" to mapOf("name" to 1)
+        )
+        return listOf(rocketPath)
+    }
+
     private fun convertSort(sort: LaunchQueryEntity.Sort): Map<String, String> {
         return when (sort) {
             LaunchQueryEntity.Sort.LAUNCH_TIME_ASC -> QUERY_SORT_ASC
             LaunchQueryEntity.Sort.LAUNCH_TIME_DESC -> QUERY_SORT_DESC
             else -> {
-                Log.wtf("$sort : Unknown type to be mapped into DTO ${LaunchRequestDto::javaClass.name}")
+                Log.wtf("$sort : Unknown type to be mapped into DTO ${QueryRequestDto::javaClass.name}")
                 //return desc  by default
                 QUERY_SORT_DESC
             }

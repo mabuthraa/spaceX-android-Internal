@@ -12,7 +12,7 @@ data class LaunchResponseDto(
     val payloads: List<String>? = null,
 
     @Json(name = "rocket")
-    val rocket: String? = null,
+    val rocket: Rocket? = null,
 
     @Json(name = "crew")
     val crew: List<String>? = null,
@@ -87,6 +87,16 @@ data class LaunchResponseDto(
     val upcoming: Boolean? = null
 ) {
 
+    data class Rocket(
+        @Json(name = "name")
+        val name: String? = null,
+
+        @Json(name = "id")
+        val id: String? = null,
+
+        @Json(name = "flickr_images")
+        val flickrImages: List<String>? = null
+    )
 
     data class FailuresItem(
 

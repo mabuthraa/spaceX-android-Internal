@@ -7,5 +7,5 @@ import retrofit2.http.POST
 interface LaunchApiService {
 
     @POST("launches/query")
-    suspend fun getLaunches(@Body body: LaunchRequestDto = LaunchRequestDto()): PagerResponseDto<LaunchResponseDto>
+    suspend fun getLaunches(@Body body: QueryRequestDto = QueryRequestDto()): PagerResponseDto<LaunchResponseDto>
 }

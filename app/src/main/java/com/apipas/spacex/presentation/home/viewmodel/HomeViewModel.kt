@@ -61,27 +61,52 @@ class HomeViewModel(
         )
     }
 
-    private fun loadLaunchList(forceUpdate: Boolean) {
-        if (forceUpdate) clearLaunches()
-        if (!launchQueryEntity.hasNextPage) {
-            // no pages to be loaded
-            return
-        }
+    private fun loadLaunchList(forceUpdate: Boolean = false) {
         viewModelScope.launch {
             _launchListVS.value = ViewState.Loading
+
+            val localOriginalLaunchQueryEntity: LaunchQueryEntity = launchQueryEntity.copy()
+            var localLaunchQueryEntity: LaunchQueryEntity = launchQueryEntity.copy()
+
+            if (forceUpdate) {
+                //reset query and keep filter settings
+                localLaunchQueryEntity =
+                    LaunchQueryEntity(filterEntity = launchQueryEntity.filterEntity)
+            }
+            if (!localLaunchQueryEntity.hasNextPage) {
+                // no pages to be loaded
+                return@launch
+            }
+
             try {
                 io {
-                    getLaunchesInteractor.execute(GetLaunchesInteractor.Params(launchQueryEntity.copy()))
+                    getLaunchesInteractor.execute(
+                        GetLaunchesInteractor.Params(
+                            localLaunchQueryEntity
+                        )
+                    )
                         .collect { docs ->
                             ui {
-                                val item = launchVMMapper.map(docs.docs)
+
+                                val items = launchVMMapper.map(docs.docs)
                                 //feed RC
-                                launchList.addAll(item)
-                                launchQueryEntity = launchQueryEntity.copy(
+                                localLaunchQueryEntity = launchQueryEntity.copy(
                                     nextPage = docs.nextPage,
                                     hasNextPage = docs.hasNextPage
                                 )
-                                _launchListVS.value = ViewState.Success(item)
+
+                                if (localOriginalLaunchQueryEntity != launchQueryEntity) {
+                                    return@ui
+                                }
+
+                                //here safe to add every thing to update VM's entities
+                                if (forceUpdate) {
+                                    launchList.clear()
+                                }
+                                launchList.addAll(items)
+                                launchQueryEntity = localLaunchQueryEntity
+                                _launchListVS.value =
+                                    ViewState.Success(emptyList())//no need to update UI with data since we update ObservableList
                             }
                         }
                 }
@@ -89,11 +114,6 @@ class HomeViewModel(
                 ui { _launchListVS.value = ViewState.Error(e) }
             }
         }
-    }
-
-    private fun clearLaunches() {
-        launchList.clear()
-        launchQueryEntity = LaunchQueryEntity(filterEntity = launchQueryEntity.filterEntity)
     }
 
     fun loadMore() {

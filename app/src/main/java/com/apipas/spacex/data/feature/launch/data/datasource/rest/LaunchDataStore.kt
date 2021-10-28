@@ -6,6 +6,6 @@ import kotlinx.coroutines.flow.flow
 
 class LaunchDataStore(private val launchApiService: LaunchApiService) {
 
-    fun getLaunches(requestDto: LaunchRequestDto): Flow<PagerResponseDto<LaunchResponseDto>> =
+    fun getLaunches(requestDto: QueryRequestDto): Flow<PagerResponseDto<LaunchResponseDto>> =
         flow { emit(launchApiService.getLaunches(requestDto)) }
 }

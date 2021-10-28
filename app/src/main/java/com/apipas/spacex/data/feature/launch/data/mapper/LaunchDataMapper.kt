@@ -11,7 +11,12 @@ class LaunchDataMapper : Mapper<LaunchResponseDto, LaunchEntity> {
             dateUtc = origin.dateUtc,
             success = origin.success,
             name = origin.name,
-            rocket = origin.rocket,
+            rocket = origin.rocket?.let { rocket ->
+                LaunchEntity.Rocket(
+                    name = rocket.name,
+                    flickrImgs = rocket.flickrImages
+                )
+            },
             failures = origin.failures?.map {
                 LaunchEntity.FailuresItem(
                     altitude = it.altitude,

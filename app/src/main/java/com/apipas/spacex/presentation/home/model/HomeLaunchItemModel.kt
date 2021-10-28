@@ -16,11 +16,17 @@ data class HomeLaunchItemModel(
     val dateUtc: Date? = null,
     val success: Boolean? = null,
     val name: String? = null,
-    val rocket: String? = null,
+    val rocket: Rocket? = null,
     val imageUrl: String? = null,
     val links: Links? = null
 
 ) : Parcelable {
+
+    @Parcelize
+    data class Rocket(
+        val name: String? = null,
+        val flickrImgs: List<String>? = null
+    ) : Parcelable
 
     @Parcelize
     data class Links(

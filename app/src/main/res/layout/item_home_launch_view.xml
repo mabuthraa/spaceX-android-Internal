@@ -76,7 +76,7 @@
                 <include
                     layout="@layout/view_home_launch_param"
                     app:name="@{@string/home_launch_item_rocket}"
-                    app:value="@{item.rocket}" />
+                    app:value="@{item.rocket.name}" />
 
                 <!--From/Since days section-->
                 <include

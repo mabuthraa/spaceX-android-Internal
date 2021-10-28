@@ -8,9 +8,14 @@ data class LaunchEntity(
     val dateUtc: Date? = null,
     val success: Boolean? = null,
     val name: String? = null,
-    val rocket: String? = null,
+    val rocket: Rocket? = null,
     val links: Links? = null,
 ) {
+
+    data class Rocket(
+        val name: String? = null,
+        val flickrImgs: List<String>? = null
+    )
 
     data class FailuresItem(
         val altitude: Int? = null,
