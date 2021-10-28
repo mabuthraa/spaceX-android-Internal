@@ -8,7 +8,7 @@
             name="message"
             type="String" />
 
-        <import type="com.apipas.spacex.R" />
+        <import type="com.epam.spacex.R" />
     </data>
 
     <TextView
