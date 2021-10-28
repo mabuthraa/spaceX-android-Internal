@@ -47,9 +47,9 @@ and `kotlin-coroutines` based on Clean Architecture.
 * Kotlin DSL
 * Paging
 * Data mappers between layers
-* SplashScreen
+* SplashScreen with timer
 * Parcelize
-* BottomSheet
+* BottomSheet Dialog
 * ViewState (OnSuccess|onError|onLoading)
 * Impl two-way binding
 * SimpleRecyclerAdapter
@@ -82,6 +82,8 @@ Android 5.0 Lollipop (API-level 21)
 ```
 ./gradlew clean AssembleDebug
 ```
+<span style='color:red'>❗❗❗ To build project via Gradle wrapper by command, check if java-jdk-11 is
+installed with updated path JAVA_HOME. Any version above 11 is not supported yet</span>.
 
 ## 7. License
 
