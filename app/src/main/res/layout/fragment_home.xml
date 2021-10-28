@@ -116,8 +116,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_below="@id/launch_list"
-                        app:visibleOrGone="@{vm.launchList.size()==0}"
-                        app:showOnSuccess="@{vm.launchListVS}" />
+                        android:visibility="gone"
+                        app:showOnSuccessAndEmpty="@{vm.launchListVS}" />
+
                 </RelativeLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

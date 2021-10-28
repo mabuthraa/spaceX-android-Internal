@@ -34,7 +34,7 @@ fun setShowOnLoading(view: View, viewState: ViewState<*>?) {
 
 @BindingAdapter("showOnError")
 fun setShowOnError(view: View, viewState: ViewState<*>?) {
-    view.visibility = when (viewState) {
+     view.visibility = when (viewState) {
         is ViewState.Error -> View.VISIBLE
         else -> View.GONE
     }
@@ -42,10 +42,19 @@ fun setShowOnError(view: View, viewState: ViewState<*>?) {
 
 @BindingAdapter("showOnSuccess")
 fun setShowOnSuccess(view: View, viewState: ViewState<*>?) {
-    when (viewState) {
+    view.visibility = when (viewState) {
         is ViewState.Success -> View.VISIBLE
         else -> View.INVISIBLE
     }
+}
+
+@BindingAdapter("showOnSuccessAndEmpty")
+fun showOnSuccessAndEmpty(view: View, viewState: ViewState<*>?) {
+    view.visibility =
+        if (viewState is ViewState.Success && viewState.item is Collection<*> && viewState.item.isEmpty())
+            View.VISIBLE
+        else
+            View.GONE
 }
 
 @BindingAdapter("fetchImage")

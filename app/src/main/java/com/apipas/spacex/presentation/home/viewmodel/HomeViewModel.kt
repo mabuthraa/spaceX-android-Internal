@@ -105,8 +105,7 @@ class HomeViewModel(
                                 }
                                 launchList.addAll(items)
                                 launchQueryEntity = localLaunchQueryEntity
-                                _launchListVS.value =
-                                    ViewState.Success(emptyList())//no need to update UI with data since we update ObservableList
+                                _launchListVS.value = ViewState.Success(items)
                             }
                         }
                 }
