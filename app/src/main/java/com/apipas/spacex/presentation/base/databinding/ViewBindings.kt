@@ -34,7 +34,7 @@ fun setShowOnLoading(view: View, viewState: ViewState<*>?) {
 
 @BindingAdapter("showOnError")
 fun setShowOnError(view: View, viewState: ViewState<*>?) {
-     view.visibility = when (viewState) {
+    view.visibility = when (viewState) {
         is ViewState.Error -> View.VISIBLE
         else -> View.GONE
     }
