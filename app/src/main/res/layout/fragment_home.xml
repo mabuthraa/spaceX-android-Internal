@@ -18,14 +18,14 @@
         android:id="@+id/home_refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:onRefreshListener="@{() -> vm.onReload()}"
+        app:onRefreshListener="@{() -> vm.reload()}"
         app:refreshing="@{(vm.companyInfoVS instanceof ViewState.Loading)  &amp;&amp; (vm.launchListVS instanceof ViewState.Loading)  &amp;&amp; false }">
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/homeScrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:onLoadMore="@{()->vm.onLoadMore()}">
+            app:onLoadMore="@{()->vm.loadMore()}">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -74,8 +74,9 @@
                 <TextView
                     android:id="@+id/home_launches_title"
                     style="@style/section_text"
-                    android:text="@{vm.launchesCounter  > 0 ? String.format(@string/home_launches_title_with_count, vm.launchesCounter) : @string/home_launches_title}"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="wrap_content"
+                    android:text="@string/home_launches_title"
+
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/home_company_info_container" />
 

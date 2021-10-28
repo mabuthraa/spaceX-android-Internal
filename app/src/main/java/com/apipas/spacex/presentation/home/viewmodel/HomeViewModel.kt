@@ -9,22 +9,30 @@ import com.apipas.spacex.data.feature.launch.domain.model.LaunchQueryEntity
 import com.apipas.spacex.presentation.base.event.common.GoToEvent
 import com.apipas.spacex.presentation.base.viewmodel.BaseViewModel
 import com.apipas.spacex.presentation.base.viewmodel.ViewState
+import com.apipas.spacex.presentation.filter.model.FilterModel
 import com.apipas.spacex.presentation.home.fragment.HomeFragmentDirections
 import com.apipas.spacex.presentation.home.model.HomeCompanyModel
 import com.apipas.spacex.presentation.home.model.HomeLaunchItemModel
 import com.apipas.spacex.presentation.home.model.mapper.HomeCompanyInfoVMMapper
 import com.apipas.spacex.presentation.home.model.mapper.HomeLaunchVMMapper
-import com.apipas.spacex.util.NonNullMutableLiveData
+import com.apipas.spacex.presentation.home.model.mapper.LaunchFilterInteractorMapper
+import com.apipas.spacex.util.Log
 import com.apipas.spacex.util.io
 import com.apipas.spacex.util.ui
 import com.carlosgub.coroutines.core.interactor.Interactor
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val getCompanyInfoInteractor: GetCompanyInfoInteractor,
     private val getLaunchesInteractor: GetLaunchesInteractor,
 ) : BaseViewModel() {
+
+    //mappers to models
+    private val companyVMMapper by lazy { HomeCompanyInfoVMMapper() }
+    private val launchVMMapper by lazy { HomeLaunchVMMapper() }
+    private val filterInteractorMapper by lazy { LaunchFilterInteractorMapper() }
 
     //companyInfo VS
     private val _companyInfoVS = MutableLiveData<ViewState<HomeCompanyModel>>()
@@ -36,16 +44,10 @@ class HomeViewModel(
 
     val launchList = ObservableArrayList<HomeLaunchItemModel>()
 
-    //launchesCounter
-    private val _launchesCounter = NonNullMutableLiveData<Int>(0)
-    val launchesCounter: LiveData<Int> get() = _launchesCounter
-
     //launchQuery
-    private var launchQueryEntity = LaunchQueryEntity()
-
-    //mappers to models
-    private val companyVMMapper by lazy { HomeCompanyInfoVMMapper() }
-    private val launchVMMapper by lazy { HomeLaunchVMMapper() }
+    @Volatile
+    private var launchQueryEntity =
+        LaunchQueryEntity(filterEntity = filterInteractorMapper.map(FilterModel()))
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     private fun loadData() {
@@ -77,10 +79,6 @@ class HomeViewModel(
                                 val item = launchVMMapper.map(docs.docs)
                                 //feed RC
                                 launchList.addAll(item)
-                                if (docs.page == 1) {
-                                    //get total size of docs when 1st page being loaded
-                                    _launchesCounter.value = docs.totalDoc
-                                }
                                 launchQueryEntity = launchQueryEntity.copy(
                                     nextPage = docs.nextPage,
                                     hasNextPage = docs.hasNextPage
@@ -97,15 +95,14 @@ class HomeViewModel(
 
     private fun clearLaunches() {
         launchList.clear()
-        launchQueryEntity = LaunchQueryEntity()
-        _launchesCounter.value = 0
+        launchQueryEntity = LaunchQueryEntity(filterEntity = launchQueryEntity.filterEntity)
     }
 
-    fun onLoadMore() {
+    fun loadMore() {
         loadLaunchList(false)
     }
 
-    fun onReload() {
+    fun reload() {
         getCompanyInfo()
         loadLaunchList(true)
     }
@@ -122,5 +119,13 @@ class HomeViewModel(
                 )
             )
         )
+    }
+
+    fun updateQuery(filterModel: FilterModel) {
+        val newFilterEntity = filterInteractorMapper.map(filterModel)
+        if (newFilterEntity != launchQueryEntity.filterEntity) {
+            launchQueryEntity = launchQueryEntity.copy(filterEntity = newFilterEntity)
+            loadLaunchList(true)
+        }
     }
 }

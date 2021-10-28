@@ -26,6 +26,14 @@ object Log {
         }
     }
 
+    fun wtf(text: String, throwable: Throwable? = null) {
+        if (BuildConfig.DEBUG) {
+            val logStrings = createLogStrings(text)
+            android.util.Log.e(logStrings[0], logStrings[1])
+            throwable?.printStackTrace()
+        }
+    }
+
     fun i(text: String) {
         if (BuildConfig.DEBUG) {
             val logStrings = createLogStrings(text)
@@ -44,6 +52,6 @@ object Log {
 
         val line = "(" + (ste[4].fileName + ":" + ste[4].lineNumber + ")")
         val method = ste[4].methodName + ": " + text
-        return arrayOf(line,method)
+        return arrayOf(line, method)
     }
 }

@@ -14,8 +14,7 @@
     <string name="home_launch_item_days_from">Days from now:</string>
     <string name="home_launch_item_days_since">Days since now:</string>
     <string name="home_company_title">COMPANY</string>
-    <string name="home_launches_title">LAUNCHES</string>
-    <string name="home_launches_title_with_count">LAUNCHES (%1$d)</string>
+    <string name="home_launches_title">LAUNCHES </string>
     <string name="home_launch_item_today">Today</string>
     <string name="home_launch_item_since">+%1$d days</string>
     <string name="home_launch_item_from">%1$d days</string>
@@ -27,6 +26,6 @@
     <string name="filter_year_bar_label_to">" to "</string>
     <string name="only_success_launch">Successful launch\n<small>(not the landing of the core)</small></string>
     <string name="filter_sort_by">Sort:</string>
-    <string name="filter_sort_launch_year_asd">by newest launch time</string>
-    <string name="filter_sort_launch_year_desc">by oldest launch time</string>
+    <string name="filter_sort_launch_year_asd">by newest launches</string>
+    <string name="filter_sort_launch_year_desc">by oldest launches</string>
 </resources>

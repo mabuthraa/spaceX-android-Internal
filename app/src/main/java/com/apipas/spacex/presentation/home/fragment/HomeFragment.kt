@@ -34,15 +34,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
 
     private fun initObservers() {
         filterViewModel.filterModel.yearRange.observe(viewLifecycleOwner, {
-            Log.d("list: ${it.joinToString(" ")}")
+            viewModel.updateQuery(filterViewModel.filterModel)
         })
 
         filterViewModel.filterModel.sortModel.observe(viewLifecycleOwner, {
-            Log.d("list: ${it}")
+            viewModel.updateQuery(filterViewModel.filterModel)
         })
 
         filterViewModel.filterModel.onlyLaunchesModel.observe(viewLifecycleOwner, {
-            Log.d("list: ${it}")
+            viewModel.updateQuery(filterViewModel.filterModel)
         })
     }
 
