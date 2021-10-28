@@ -93,11 +93,7 @@ dependencies {
 
     // Koin for Android
     def koin_version = "3.1.2"
-//    implementation "io.insert-koin:koin-core:$koin_version"
-    // Koin main features for Android (Scope,ViewModel ...)
     implementation "io.insert-koin:koin-android:$koin_version"
-    // Koin Java Compatibility
-    implementation "io.insert-koin:koin-android-compat:$koin_version"
 
     //coroutines : Async/Flow
     def coroutines_version = "1.5.2"
@@ -121,7 +117,7 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
-    //gide : async-image-load
+    //Glide : async-image-load
     def glide_version = "4.12.0"
     implementation "com.github.bumptech.glide:glide:$glide_version"
     kapt "com.github.bumptech.glide:compiler:$glide_version"
