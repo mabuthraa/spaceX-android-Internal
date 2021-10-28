@@ -6,15 +6,15 @@
 
     <data>
 
-        <import type="com.apipas.spacex.R" />
+        <import type="com.epam.spacex.R" />
 
         <variable
             name="item"
-            type="com.apipas.spacex.presentation.home.model.HomeLaunchItemModel" />
+            type="com.epam.spacex.presentation.home.model.HomeLaunchItemModel" />
 
         <variable
             name="vm"
-            type="com.apipas.spacex.presentation.home.viewmodel.HomeViewModel" />
+            type="com.epam.spacex.presentation.home.viewmodel.HomeViewModel" />
 
     </data>
 

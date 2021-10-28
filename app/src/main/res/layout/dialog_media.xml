@@ -4,11 +4,11 @@
 
     <data>
 
-        <import type="com.apipas.spacex.R" />
+        <import type="com.epam.spacex.R" />
 
         <variable
             name="vm"
-            type="com.apipas.spacex.presentation.media.viewmodel.MediaViewModel" />
+            type="com.epam.spacex.presentation.media.viewmodel.MediaViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

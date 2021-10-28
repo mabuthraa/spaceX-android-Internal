@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.apipas.spacex.presentation.home.fragment.HomeFragment"
+        android:name="com.epam.spacex.presentation.home.fragment.HomeFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_home">
         <action
@@ -19,18 +19,16 @@
     </fragment>
     <dialog
         android:id="@+id/filterDialogFragment"
-        android:name="com.apipas.spacex.presentation.filter.dialog.FilterDialogFragment"
+        android:name="com.epam.spacex.presentation.filter.dialog.FilterDialogFragment"
         android:label="@string/filter_title"
         tools:layout="@layout/dialog_filter" />
     <dialog
         android:id="@+id/mediaDialogFragment"
-        android:name="com.apipas.spacex.presentation.media.dialog.MediaDialogFragment"
+        android:name="com.epam.spacex.presentation.media.dialog.MediaDialogFragment"
         android:label="@string/media_title"
         tools:layout="@layout/dialog_media">
         <argument
             android:name="HomeLaunchItemModel"
-            app:argType="com.apipas.spacex.presentation.home.model.HomeLaunchItemModel" />
+            app:argType="com.epam.spacex.presentation.home.model.HomeLaunchItemModel" />
     </dialog>
-
-
 </navigation>

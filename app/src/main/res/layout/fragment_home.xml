@@ -5,13 +5,13 @@
 
     <data>
 
-        <import type="com.apipas.spacex.R" />
+        <import type="com.epam.spacex.R" />
 
-        <import type="com.apipas.spacex.presentation.base.viewmodel.ViewState" />
+        <import type="com.epam.spacex.presentation.base.viewmodel.ViewState" />
 
         <variable
             name="vm"
-            type="com.apipas.spacex.presentation.home.viewmodel.HomeViewModel" />
+            type="com.epam.spacex.presentation.home.viewmodel.HomeViewModel" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
