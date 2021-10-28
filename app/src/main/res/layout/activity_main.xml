@@ -7,13 +7,13 @@
 
         <variable
             name="vm"
-            type="com.apipas.mynote.ui.main.MainVM" />
+            type="com.apipas.spacex.presentation.main.viewmodel.MainVM" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.main.MainActivity">
+        tools:context=".presentation.main.activity.MainActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"

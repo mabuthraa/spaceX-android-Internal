@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="message"
+            type="String" />
+
+        <import type="com.apipas.spacex.R" />
+    </data>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_padding_size_8"
+        android:text="@{ message ?? context.getString(R.string.general_embedded_error) }"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/error_text_color"
+        tools:visibility="gone" />
+</layout>

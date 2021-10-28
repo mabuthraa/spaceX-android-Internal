@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.apipas.spacex.R" />
+
+        <variable
+            name="vm"
+            type="com.apipas.spacex.presentation.media.viewmodel.MediaViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme">
+
+        <ImageView
+            android:id="@+id/media_handler"
+            style="@style/bottom_sheet_handler"
+            android:contentDescription="@string/filter_title"
+            android:src="@drawable/ic_holder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/media_title"
+            style="@style/bottom_sheet_title"
+            android:text='@string/media_title'
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/media_handler" />
+
+        <ImageView
+            android:id="@+id/media_patch"
+            style="@style/bottom_sheet_handler"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:contentDescription="@string/filter_title"
+            app:fetchImage="@{vm.imageUrl}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/media_title"
+            app:visibleOrGone="@{vm.imageUrl != null}" />
+
+        <Button
+            android:id="@+id/media_youtube"
+            style="@style/media_button"
+            android:onClick="@{()->vm.openYoutube(vm.links.youtubeId)}"
+            android:text="@string/media_youtube"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/media_patch"
+            app:visibleOrGone="@{vm.links.youtubeId != null}" />
+
+        <Button
+            android:id="@+id/media_wiki"
+            style="@style/media_button"
+            android:onClick="@{()->vm.openWeb(vm.links.wikipedia)}"
+            android:text="@string/media_Wiki"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/media_youtube"
+            app:visibleOrGone="@{vm.links.wikipedia != null}" />
+
+        <Button
+            android:id="@+id/media_article"
+            style="@style/media_button"
+            android:onClick="@{()->vm.openWeb(vm.links.article)}"
+            android:text="@string/media_article"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/media_wiki"
+            app:visibleOrGone="@{vm.links.article != null}" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/media_article" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

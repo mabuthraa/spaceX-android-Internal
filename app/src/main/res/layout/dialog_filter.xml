@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.apipas.spacex.R" />
+
+        <variable
+            name="vm"
+            type="com.apipas.spacex.presentation.filter.viewmodel.FilterViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme">
+
+        <ImageView
+            android:id="@+id/filter_handler"
+            style="@style/bottom_sheet_handler"
+            android:contentDescription="@string/filter_title"
+            android:src="@drawable/ic_holder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/filter_title"
+            style="@style/bottom_sheet_title"
+            android:text='@string/filter_title'
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/filter_handler" />
+
+        <LinearLayout
+            android:id="@+id/filter_year_bar_container"
+            style="@style/filter_section"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/filter_title">
+
+            <TextView
+                style="@style/bottom_sheet_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_margin="@dimen/margin_padding_size_4"
+                android:text='@string/filter_year_bar' />
+
+            <TextView
+                style="@style/filter_label"
+                android:text='@{String.format("%.0f", vm.filterModel.yearRange[0])}'
+                tools:text="2020" />
+
+            <TextView
+                style="@style/bottom_sheet_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_margin="@dimen/margin_padding_size_4"
+                android:text="@string/filter_year_bar_label_to" />
+
+            <TextView
+                style="@style/filter_label"
+                android:text='@{String.format("%.0f", vm.filterModel.yearRange[1])}'
+                tools:text="2005" />
+
+        </LinearLayout>
+
+        <com.google.android.material.slider.RangeSlider
+            android:id="@+id/filter_year_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_padding_size_16"
+            android:layout_marginEnd="@dimen/margin_padding_size_16"
+            android:stepSize="1"
+            android:theme="@style/Widget.App.Slider"
+            android:valueFrom="@{vm.filterModel.yearRangeStart}"
+            android:valueTo="@{vm.filterModel.yearRangeEndMax}"
+            app:labelBehavior="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/filter_year_bar_container"
+            app:tickColor="@color/transparent"
+            app:values="@={vm.filterModel.yearRange}" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/filter_switcher"
+            style="@style/bottom_sheet_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="@={vm.filterModel.onlyLaunchesModel}"
+            android:gravity="center_vertical"
+            android:text='@string/only_success_launch'
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/filter_year_bar"
+            tools:targetApi="m" />
+
+        <RadioGroup
+            android:id="@+id/filter_sort_container"
+            style="@style/filter_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checkedButton="@={vm.filterModel.sortModel}"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/filter_switcher">
+
+            <TextView
+                style="@style/bottom_sheet_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_margin="@dimen/margin_padding_size_4"
+                android:layout_marginBottom="0dp"
+                android:text='@string/filter_sort_by' />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/filter_sort_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filter_sort_launch_year_asd" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/filter_sort_asc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filter_sort_launch_year_desc" />
+        </RadioGroup>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/filter_sort_container" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
