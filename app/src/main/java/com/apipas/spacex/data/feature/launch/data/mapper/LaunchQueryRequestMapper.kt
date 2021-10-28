@@ -19,15 +19,19 @@ class LaunchQueryRequestMapper : Mapper<LaunchQueryEntity, QueryRequestDto> {
                 QUERY_KEY to mapOf(
                     QUERY_DATE_RANGE_FROM_KEY to origin.filterEntity.yearStart.toISO8601Format(),
                     QUERY_DATE_RANGE_TO_KEY to origin.filterEntity.yearEndInclusive.toISO8601Format(),
-                )
-            ) + if (origin.filterEntity.onlySuccessfulLaunch) mapOf(QUERY_SUCCESS to true) else mapOf()
+                ), Pair(QUERY_SUCCESS, origin.filterEntity.onlySuccessfulLaunch)
+            )
         )
     }
 
     private fun getLaunchPopulate(): List<Map<String, Any>> {
+        // obtain more data from rocket collection like name/imgs, BigThank for 'Populate' on MongoDB
         val rocketPath = mapOf(
             "path" to "rocket",
-            "select" to mapOf("name" to 1)
+            "select" to mapOf(
+                "name" to 1,
+                "flickr_images" to 1
+            )
         )
         return listOf(rocketPath)
     }

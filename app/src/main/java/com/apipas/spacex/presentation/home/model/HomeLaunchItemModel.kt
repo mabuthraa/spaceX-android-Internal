@@ -16,7 +16,7 @@ data class HomeLaunchItemModel(
     val dateUtc: Date? = null,
     val success: Boolean? = null,
     val name: String? = null,
-    val rocket: Rocket? = null,
+    val rocket: Rocket = Rocket(),
     val imageUrl: String? = null,
     val links: Links? = null
 
@@ -25,7 +25,7 @@ data class HomeLaunchItemModel(
     @Parcelize
     data class Rocket(
         val name: String? = null,
-        val flickrImgs: List<String>? = null
+        val flickrImg: String? = null
     ) : Parcelable
 
     @Parcelize
@@ -84,4 +84,3 @@ data class HomeLaunchItemModel(
         }
     }
 }
-

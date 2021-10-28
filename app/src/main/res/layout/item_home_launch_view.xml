@@ -32,12 +32,11 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground"
             android:clickable="@{item.isClickable}"
             android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             android:onClick="@{()-> vm.onLaunchItemClick(item)}"
-            android:paddingTop="@dimen/margin_padding_size_8"
-            android:paddingBottom="@dimen/margin_padding_size_8">
+            tools:targetApi="m">
 
             <ImageView
                 android:id="@+id/item_home_launch_patch_image"
@@ -46,17 +45,54 @@
                 android:contentDescription="@string/home_launch_item_patch_description"
                 android:padding="@dimen/margin_padding_size_8"
                 app:fetchImage="@{item.imageUrl}"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/item_home_launch_state_image"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/item_home_launch_state_image"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/home_launch_item_patch_description"
+                android:padding="@dimen/margin_padding_size_4"
+                app:imageResource="@{item.stateImageUrlRes}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/item_home_launch_patch_image"
+                app:layout_constraintStart_toStartOf="@+id/item_home_launch_patch_image" />
+
+            <ImageView
+                android:id="@+id/item_home_launch_rocket_image"
+                android:layout_width="100dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/home_launch_item_patch_description"
+                android:scaleType="centerCrop"
+                app:fetchImage="@{item.rocket.flickrImg}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:visibleOrInvisible="@{item.rocket.flickrImg != null }" />
+
+            <ImageView
+                android:id="@+id/item_home_launch_rocket_image_overlapping"
+                android:layout_width="100dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/home_launch_item_patch_description"
+                android:scaleType="fitCenter"
+                android:src="@drawable/bgr_launch_fading"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:visibleOrInvisible="@{item.rocket.flickrImg != null }" />
 
             <LinearLayout
                 android:id="@+id/item_home_launch_params"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:paddingTop="@dimen/margin_padding_size_8"
+                android:paddingBottom="@dimen/margin_padding_size_8"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/item_home_launch_state_image"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/item_home_launch_patch_image"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -86,16 +122,7 @@
 
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/item_home_launch_state_image"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/home_launch_item_patch_description"
-                android:padding="@dimen/margin_padding_size_4"
-                app:imageResource="@{item.stateImageUrlRes}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/item_home_launch_params"
-                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>

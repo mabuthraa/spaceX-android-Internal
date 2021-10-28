@@ -11,12 +11,10 @@ class HomeLaunchVMMapper : Mapper<LaunchEntity, HomeLaunchItemModel> {
             dateUtc = origin.dateUtc,
             success = origin.success,
             name = origin.name,
-            rocket = origin.rocket?.let { rocket ->
-                HomeLaunchItemModel.Rocket(
-                    rocket.name,
-                    rocket.flickrImgs
-                )
-            },
+            rocket = HomeLaunchItemModel.Rocket(
+                origin.rocket?.name,
+                origin.rocket?.flickrImgs?.random()
+            ),
             failures = origin.failures.isNotEmpty(),
             imageUrl = origin.links?.patch?.small,
             links = origin.links?.let {

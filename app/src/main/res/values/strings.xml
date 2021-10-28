@@ -31,4 +31,5 @@
     <string name="media_youtube">Youtube</string>
     <string name="media_Wiki">Wikipedia</string>
     <string name="media_article">Article</string>
+    <string name="home_no_data">Empty</string>
 </resources>
