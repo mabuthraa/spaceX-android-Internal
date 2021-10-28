@@ -10,5 +10,5 @@ data class PagerEntity<T : Any>(
     val page: Int? = null,
     val totalDocs: Int? = null,
     val nextPage: Int? = null,
-    val totalDoc: Int? = null
+    val totalDoc: Int = 0
 )

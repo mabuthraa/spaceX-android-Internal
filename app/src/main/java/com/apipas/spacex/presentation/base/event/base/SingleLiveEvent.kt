@@ -1,4 +1,4 @@
-package com.apipas.spacex.presentation.base.event.common
+package com.apipas.spacex.presentation.base.event.base
 
 import androidx.annotation.MainThread
 import androidx.annotation.NonNull

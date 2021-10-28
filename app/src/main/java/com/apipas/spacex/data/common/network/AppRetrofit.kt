@@ -1,7 +1,6 @@
 package com.apipas.spacex.data.common.network
 
 import com.apipas.spacex.app.Constants
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -22,7 +21,6 @@ class AppRetrofit(private val okHttpClient: OkHttpClient) {
         return Retrofit.Builder()
             .baseUrl(Constants.DEFAULT_HOST)
             .client(okHttpClient)
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .addConverterFactory(
                 MoshiConverterFactory.create(
                     moshi

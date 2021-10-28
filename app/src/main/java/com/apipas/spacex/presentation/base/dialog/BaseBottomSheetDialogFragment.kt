@@ -1,4 +1,4 @@
-package com.apipas.spacex.presentation.base.viewmodel
+package com.apipas.spacex.presentation.base.dialog
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,17 +9,23 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.apipas.spacex.BR
-import com.apipas.spacex.presentation.base.event.common.LiveEvent
+import com.apipas.spacex.presentation.base.event.base.LiveEvent
+import com.apipas.spacex.presentation.base.event.common.GoToEvent
+import com.apipas.spacex.presentation.base.viewmodel.BaseViewModel
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import kotlin.reflect.KClass
 
 
-abstract class MvvmFragment<B : ViewDataBinding, VM : BaseViewModel>(
+abstract class BaseBottomSheetDialogFragment<B : ViewDataBinding, VM : BaseViewModel>(
     @LayoutRes val layoutId: Int, viewModelClass: KClass<VM>
-) : Fragment() {
+) : BottomSheetDialogFragment() {
 
     protected lateinit var binding: B
+    private var rootLayout: View? = null
     open val viewModel: VM by lazy { getViewModel(clazz = viewModelClass) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,11 +34,9 @@ abstract class MvvmFragment<B : ViewDataBinding, VM : BaseViewModel>(
         initVM()
     }
 
-    /**
-     * initVM used to prepare VM before being added to layout
-     */
-    open fun initVM() {
-        // do nothing ..
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initSubscribers()
     }
 
     override fun onCreateView(
@@ -42,8 +46,6 @@ abstract class MvvmFragment<B : ViewDataBinding, VM : BaseViewModel>(
     ): View? {
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         binding.lifecycleOwner = this
-//        binding.setVariable(BR.lifecycle, viewLifecycleOwner) //todo to be added
-
         binding.setVariable(BR.vm, viewModel)
         return binding.root
     }
@@ -51,6 +53,19 @@ abstract class MvvmFragment<B : ViewDataBinding, VM : BaseViewModel>(
     override fun onDestroy() {
         lifecycle.removeObserver(viewModel)
         super.onDestroy()
+    }
+
+    private fun initSubscribers() {
+        subscribe(GoToEvent::class, Observer { event ->
+            findNavController().navigate(event.direction)
+        })
+    }
+
+    /**
+     * initVM used to prepare VM before being added to layout
+     */
+    open fun initVM() {
+        // do nothing ..
     }
 
     protected fun <T : LiveEvent> subscribe(eventClass: KClass<T>, eventObserver: Observer<T>) {

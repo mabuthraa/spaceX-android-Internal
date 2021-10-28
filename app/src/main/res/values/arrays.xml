@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="initial_year_slider_values">
+        <item>2005</item>
+        <item>2030</item>
+    </array>
+</resources>

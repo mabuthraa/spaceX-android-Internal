@@ -1,4 +1,4 @@
-package com.apipas.spacex.presentation.main
+package com.apipas.spacex.presentation.main.activity
 
 import android.os.Bundle
 import androidx.navigation.Navigation
@@ -7,6 +7,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.apipas.spacex.R
 import com.apipas.spacex.databinding.ActivityMainBinding
 import com.apipas.spacex.presentation.base.activity.BaseActivity
+import com.apipas.spacex.presentation.main.viewmodel.MainVM
 
 class MainActivity :
     BaseActivity<ActivityMainBinding, MainVM>(R.layout.activity_main, MainVM::class) {

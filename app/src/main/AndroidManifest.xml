@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme"
         tools:targetApi="n">
         <activity
-            android:name="com.apipas.spacex.presentation.main.MainActivity"
+            android:name="com.apipas.spacex.presentation.main.activity.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="true">
