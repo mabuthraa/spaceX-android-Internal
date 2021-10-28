@@ -24,7 +24,7 @@
         tools:layout="@layout/dialog_filter" />
     <dialog
         android:id="@+id/mediaDialogFragment"
-        android:name="com.apipas.spacex.presentation.media.fragment.MediaDialogFragment"
+        android:name="com.apipas.spacex.presentation.media.dialog.MediaDialogFragment"
         android:label="@string/media_title"
         tools:layout="@layout/dialog_media" >
         <argument

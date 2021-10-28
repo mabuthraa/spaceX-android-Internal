@@ -8,13 +8,18 @@ class HomeLaunchVMMapper : Mapper<LaunchEntity, HomeLaunchItemModel> {
     override fun map(origin: LaunchEntity) =
         HomeLaunchItemModel(
             id = origin.id,
-            staticFireDateUtc = origin.staticFireDateUtc,
             dateUtc = origin.dateUtc,
             success = origin.success,
             name = origin.name,
-            upcoming = origin.upcoming,
             rocket = origin.rocket,
             failures = origin.failures.isNotEmpty(),
-            imageUrl = origin.links?.patch?.small
+            imageUrl = origin.links?.patch?.small,
+            links = origin.links?.let {
+                HomeLaunchItemModel.Links(
+                    wikipedia = origin.links.wikipedia,
+                    youtubeId = origin.links.youtubeId,
+                    article = origin.links.article
+                )
+            }
         )
 }

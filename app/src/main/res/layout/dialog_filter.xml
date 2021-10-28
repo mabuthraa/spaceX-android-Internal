@@ -96,6 +96,7 @@
             tools:targetApi="m" />
 
         <RadioGroup
+            android:id="@+id/filter_sort_container"
             style="@style/filter_section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -125,7 +126,12 @@
                 android:text="@string/filter_sort_launch_year_desc" />
         </RadioGroup>
 
-        <!--title soring-->
-        <!--multiple choice sorting-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/filter_sort_container" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

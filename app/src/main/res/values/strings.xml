@@ -28,4 +28,7 @@
     <string name="filter_sort_by">Sort:</string>
     <string name="filter_sort_launch_year_asd">by newest launches</string>
     <string name="filter_sort_launch_year_desc">by oldest launches</string>
+    <string name="media_youtube">Youtube</string>
+    <string name="media_Wiki">Wikipedia</string>
+    <string name="media_article">Article</string>
 </resources>

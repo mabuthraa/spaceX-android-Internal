@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?android:attr/selectableItemBackground"
-            android:clickable="true"
+            android:clickable="@{item.isClickable}"
             android:focusable="true"
             android:onClick="@{()-> vm.onLaunchItemClick(item)}"
             android:paddingTop="@dimen/margin_padding_size_8"

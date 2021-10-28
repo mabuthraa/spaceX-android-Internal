@@ -5,6 +5,7 @@ import android.os.Parcelable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.apipas.spacex.R
+import com.apipas.spacex.data.feature.launch.domain.model.LaunchEntity
 import com.apipas.spacex.util.extension.toDateTimeFormat
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
@@ -14,15 +15,22 @@ import java.util.concurrent.TimeUnit
 @Parcelize
 data class HomeLaunchItemModel(
     val id: String,
-    val staticFireDateUtc: Date? = null,//to be removed
     val failures: Boolean?,
     val dateUtc: Date? = null,
     val success: Boolean? = null,
     val name: String? = null,
-    val upcoming: Boolean? = null,
     val rocket: String? = null,
-    val imageUrl: String? = null
+    val imageUrl: String? = null,
+    val links: Links? = null
+
 ) : Parcelable {
+
+    @Parcelize
+    data class Links(
+        val wikipedia: String? = null,
+        val youtubeId: String? = null,
+        val article: String? = null
+    ) : Parcelable
 
     @IgnoredOnParcel
     val stateImageUrlRes: Int? by lazy {
@@ -57,6 +65,10 @@ data class HomeLaunchItemModel(
         else
             R.string.home_launch_item_days_from
     }
+
+    fun isClickable(): Boolean =
+        links?.wikipedia != null || links?.article != null || links?.youtubeId != null
+
 
     fun remainingDaysAsString(context: Context): String {
         return when (val value = remainingDaysAsValue) {
