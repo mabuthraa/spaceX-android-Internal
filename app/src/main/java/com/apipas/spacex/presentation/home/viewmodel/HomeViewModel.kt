@@ -75,6 +75,7 @@ class HomeViewModel(
             }
             if (!localLaunchQueryEntity.hasNextPage) {
                 // no pages to be loaded
+                _launchListVS.value = ViewState.Success(launchList)
                 return@launch
             }
 

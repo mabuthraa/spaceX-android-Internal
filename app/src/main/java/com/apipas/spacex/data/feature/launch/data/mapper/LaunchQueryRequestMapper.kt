@@ -19,8 +19,8 @@ class LaunchQueryRequestMapper : Mapper<LaunchQueryEntity, QueryRequestDto> {
                 QUERY_KEY to mapOf(
                     QUERY_DATE_RANGE_FROM_KEY to origin.filterEntity.yearStart.toISO8601Format(),
                     QUERY_DATE_RANGE_TO_KEY to origin.filterEntity.yearEndInclusive.toISO8601Format(),
-                ), Pair(QUERY_SUCCESS, origin.filterEntity.onlySuccessfulLaunch)
-            )
+                )
+            ) + if (origin.filterEntity.onlySuccessfulLaunch) mapOf(QUERY_SUCCESS to true) else mapOf()
         )
     }
 
