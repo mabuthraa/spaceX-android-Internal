@@ -11,7 +11,11 @@ class AppOkHttpClient(
 
     fun getDefaultOkHttpClientBuilder(): OkHttpClient.Builder {
         return OkHttpClient().newBuilder()
-            .addInterceptor(HttpLoggingInterceptor().apply { apply { level = HttpLoggingInterceptor.Level.BODY } })
+            .addInterceptor(HttpLoggingInterceptor().apply {
+                apply {
+                    level = HttpLoggingInterceptor.Level.BODY
+                }
+            })
             .addInterceptor(ChuckInterceptor(context))
     }
 }

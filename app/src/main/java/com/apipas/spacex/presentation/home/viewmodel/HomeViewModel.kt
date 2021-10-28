@@ -16,12 +16,10 @@ import com.apipas.spacex.presentation.home.model.HomeLaunchItemModel
 import com.apipas.spacex.presentation.home.model.mapper.HomeCompanyInfoVMMapper
 import com.apipas.spacex.presentation.home.model.mapper.HomeLaunchVMMapper
 import com.apipas.spacex.presentation.home.model.mapper.LaunchFilterInteractorMapper
-import com.apipas.spacex.util.Log
 import com.apipas.spacex.util.io
 import com.apipas.spacex.util.ui
 import com.carlosgub.coroutines.core.interactor.Interactor
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
 
 class HomeViewModel(

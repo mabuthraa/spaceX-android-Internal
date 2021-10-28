@@ -1,18 +1,13 @@
 package com.apipas.spacex.presentation.base.databinding
 
-import android.view.View
+import androidx.core.widget.NestedScrollView
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableArrayList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.apipas.spacex.presentation.base.viewmodel.BaseViewModel
-import com.apipas.spacex.presentation.base.adapter.SimpleRecyclerAdapter
-import com.apipas.spacex.presentation.base.viewmodel.ViewState
-import android.widget.Toast
-import androidx.annotation.DimenRes
-import androidx.core.view.NestedScrollingChild
-import androidx.core.widget.NestedScrollView
 import com.apipas.spacex.R
+import com.apipas.spacex.presentation.base.adapter.SimpleRecyclerAdapter
+import com.apipas.spacex.presentation.base.viewmodel.BaseViewModel
 
 
 @BindingAdapter(value = ["viewModel", "items", "layoutId"])

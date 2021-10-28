@@ -2,14 +2,18 @@ package com.apipas.spacex.presentation.base.event.base
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
-import java.util.HashMap
+import java.util.*
 import kotlin.reflect.KClass
 
 class LiveEventMap {
 
     private val events = HashMap<KClass<out LiveEvent>, SingleLiveEvent<out LiveEvent>>()
 
-    fun <T : LiveEvent> subscribe(lifecycleOwner: LifecycleOwner, eventClass: KClass<T>, eventObserver: Observer<T>) {
+    fun <T : LiveEvent> subscribe(
+        lifecycleOwner: LifecycleOwner,
+        eventClass: KClass<T>,
+        eventObserver: Observer<T>
+    ) {
         var liveEvent: SingleLiveEvent<T>? = events[eventClass] as SingleLiveEvent<T>?
         if (liveEvent == null) {
             liveEvent = initUiEvent(eventClass)

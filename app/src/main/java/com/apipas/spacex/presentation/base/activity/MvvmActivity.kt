@@ -7,12 +7,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import com.apipas.spacex.BR
-import com.apipas.spacex.presentation.base.viewmodel.BaseViewModel
 import com.apipas.spacex.presentation.base.event.base.LiveEvent
+import com.apipas.spacex.presentation.base.viewmodel.BaseViewModel
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import kotlin.reflect.KClass
 
-abstract class MvvmActivity<B : ViewDataBinding, out VM : BaseViewModel>(@LayoutRes var layoutId : Int, viewModelClass: KClass<VM>) : AppCompatActivity() {
+abstract class MvvmActivity<B : ViewDataBinding, out VM : BaseViewModel>(
+    @LayoutRes var layoutId: Int,
+    viewModelClass: KClass<VM>
+) : AppCompatActivity() {
 
     protected val viewModel: VM by lazy { getViewModel(clazz = viewModelClass) }
     protected lateinit var binding: B

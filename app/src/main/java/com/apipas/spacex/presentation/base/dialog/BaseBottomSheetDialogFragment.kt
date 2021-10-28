@@ -7,14 +7,12 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.apipas.spacex.BR
 import com.apipas.spacex.presentation.base.event.base.LiveEvent
 import com.apipas.spacex.presentation.base.event.common.GoToEvent
 import com.apipas.spacex.presentation.base.viewmodel.BaseViewModel
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import kotlin.reflect.KClass

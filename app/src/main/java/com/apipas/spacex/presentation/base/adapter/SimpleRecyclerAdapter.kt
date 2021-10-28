@@ -19,7 +19,8 @@ class SimpleRecyclerAdapter<T>(
 
     private var items: ObservableList<T>? = items
 
-    private var onListChangedCallback: ObservableList.OnListChangedCallback<ObservableList<T>>? = null
+    private var onListChangedCallback: ObservableList.OnListChangedCallback<ObservableList<T>>? =
+        null
 
     init {
         initOnListChangedListener()
@@ -31,11 +32,19 @@ class SimpleRecyclerAdapter<T>(
                 notifyDataSetChanged()
             }
 
-            override fun onItemRangeChanged(sender: ObservableList<T>, positionStart: Int, itemCount: Int) {
+            override fun onItemRangeChanged(
+                sender: ObservableList<T>,
+                positionStart: Int,
+                itemCount: Int
+            ) {
                 notifyItemRangeChanged(positionStart, itemCount)
             }
 
-            override fun onItemRangeInserted(sender: ObservableList<T>, positionStart: Int, itemCount: Int) {
+            override fun onItemRangeInserted(
+                sender: ObservableList<T>,
+                positionStart: Int,
+                itemCount: Int
+            ) {
                 notifyItemRangeInserted(positionStart, itemCount)
             }
 
@@ -48,18 +57,33 @@ class SimpleRecyclerAdapter<T>(
                 notifyDataSetChanged()
             }
 
-            override fun onItemRangeRemoved(sender: ObservableList<T>, positionStart: Int, itemCount: Int) {
+            override fun onItemRangeRemoved(
+                sender: ObservableList<T>,
+                positionStart: Int,
+                itemCount: Int
+            ) {
                 notifyItemRangeRemoved(positionStart, itemCount)
             }
         }
         items!!.addOnListChangedCallback(onListChangedCallback)
     }
 
-    private fun getViewHolderBinding(parent: ViewGroup, @LayoutRes itemLayoutId: Int): ViewDataBinding {
-        return DataBindingUtil.inflate(LayoutInflater.from(parent.context), itemLayoutId, parent, false)
+    private fun getViewHolderBinding(
+        parent: ViewGroup,
+        @LayoutRes itemLayoutId: Int
+    ): ViewDataBinding {
+        return DataBindingUtil.inflate(
+            LayoutInflater.from(parent.context),
+            itemLayoutId,
+            parent,
+            false
+        )
     }
 
-    override fun onBindViewHolder(holder: SimpleRecyclerAdapter<T>.BaseMvvmRecyclerViewHolder<T>, position: Int) {
+    override fun onBindViewHolder(
+        holder: SimpleRecyclerAdapter<T>.BaseMvvmRecyclerViewHolder<T>,
+        position: Int
+    ) {
         val item = items!![position]
         holder.bind(item, holder.binder)
         holder.binder!!.executePendingBindings()
@@ -89,11 +113,15 @@ class SimpleRecyclerAdapter<T>(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseMvvmRecyclerViewHolder<T> {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): BaseMvvmRecyclerViewHolder<T> {
         return BaseMvvmRecyclerViewHolder(getViewHolderBinding(parent, layoutId))
     }
 
-    inner class BaseMvvmRecyclerViewHolder<T>(v: ViewDataBinding) : RecyclerView.ViewHolder(v.root) {
+    inner class BaseMvvmRecyclerViewHolder<T>(v: ViewDataBinding) :
+        RecyclerView.ViewHolder(v.root) {
 
         val binder: ViewDataBinding? = DataBindingUtil.bind(v.root)
 

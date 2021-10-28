@@ -2,11 +2,9 @@ package com.apipas.spacex.presentation.media.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.apipas.spacex.presentation.base.event.common.GoToEvent
 import com.apipas.spacex.presentation.base.event.common.OpenWebEvent
 import com.apipas.spacex.presentation.base.event.common.OpenYoutubeEvent
 import com.apipas.spacex.presentation.base.viewmodel.BaseViewModel
-import com.apipas.spacex.presentation.home.fragment.HomeFragmentDirections
 import com.apipas.spacex.presentation.home.model.HomeLaunchItemModel
 
 class MediaViewModel() : BaseViewModel() {

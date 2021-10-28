@@ -1,11 +1,11 @@
 package com.apipas.spacex.di
 
 import android.content.Context
+import com.apipas.spacex.data.common.network.AppOkHttpClient
+import com.apipas.spacex.data.common.network.AppRetrofit
 import com.apipas.spacex.data.feature.companyInfo.data.datasource.rest.CompanyInfoApiService
 import com.apipas.spacex.data.feature.launch.data.datasource.rest.LaunchApiService
-import com.apipas.spacex.data.common.network.AppOkHttpClient
 import okhttp3.OkHttpClient
-import com.apipas.spacex.data.common.network.AppRetrofit
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import kotlin.reflect.KClass

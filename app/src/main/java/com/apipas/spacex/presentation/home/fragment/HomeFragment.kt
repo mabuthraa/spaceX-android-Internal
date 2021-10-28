@@ -10,10 +10,7 @@ import com.apipas.spacex.databinding.FragmentHomeBinding
 import com.apipas.spacex.presentation.base.fragment.BaseFragment
 import com.apipas.spacex.presentation.filter.viewmodel.FilterViewModel
 import com.apipas.spacex.presentation.home.viewmodel.HomeViewModel
-import com.apipas.spacex.util.Log
 import org.koin.androidx.viewmodel.ext.android.sharedStateViewModel
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     R.layout.fragment_home,

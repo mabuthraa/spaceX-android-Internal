@@ -2,10 +2,7 @@ package com.apipas.spacex.presentation.home.model
 
 import android.content.Context
 import android.os.Parcelable
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.apipas.spacex.R
-import com.apipas.spacex.data.feature.launch.domain.model.LaunchEntity
 import com.apipas.spacex.util.extension.toDateTimeFormat
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
