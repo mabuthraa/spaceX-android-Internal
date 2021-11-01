@@ -10,7 +10,7 @@ apply plugin: 'kotlin-parcelize'
 
 final VERSION_MAJOR = 1
 final VERSION_MINOR = 0
-final VERSION_PATCH = 0
+final VERSION_PATCH = 1
 
 
 android.sourceSets.all {
