@@ -5,11 +5,13 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.annotation.ColorInt
 import com.epam.spacex.R
 import com.epam.spacex.databinding.FragmentHomeBinding
 import com.epam.spacex.presentation.base.fragment.BaseFragment
 import com.epam.spacex.presentation.filter.viewmodel.FilterViewModel
 import com.epam.spacex.presentation.home.viewmodel.HomeViewModel
+import com.epam.spacex.util.ColorUtil
 import org.koin.androidx.viewmodel.ext.android.sharedStateViewModel
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
@@ -25,7 +27,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.homeRefreshLayout.setColorSchemeResources(R.color.accent)
+        @ColorInt val color = ColorUtil.getColorFromTheme(
+            requireContext(),
+            R.attr.colorSecondary,
+            requireContext().resources.getColor(R.color.tiffany_blue_500)
+        )
+        binding.homeRefreshLayout.setColorSchemeColors(color)
         initObservers()
     }
 

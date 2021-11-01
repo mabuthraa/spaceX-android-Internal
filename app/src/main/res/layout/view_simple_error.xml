@@ -17,6 +17,6 @@
         android:layout_margin="@dimen/margin_padding_size_8"
         android:text="@{ message ?? context.getString(R.string.general_embedded_error) }"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="@color/error_text_color"
+        android:textColor="?attr/colorError"
         tools:visibility="gone" />
 </layout>
