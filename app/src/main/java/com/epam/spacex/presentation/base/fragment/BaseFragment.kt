@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.epam.spacex.BR
@@ -20,7 +21,7 @@ import kotlin.reflect.KClass
 
 abstract class BaseFragment<B : ViewDataBinding, VM : BaseViewModel>(
     @LayoutRes val layoutId: Int, viewModelClass: KClass<VM>
-) : BottomSheetDialogFragment() {
+) : Fragment() {
 
     protected lateinit var binding: B
     private var rootLayout: View? = null
